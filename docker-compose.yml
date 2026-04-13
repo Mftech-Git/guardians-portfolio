@@ -1,0 +1,41 @@
+# Ghost CMS for Guardians AZ Portfolio
+# Run: docker compose up -d
+# Admin panel: http://localhost:2368/ghost (first visit creates your account)
+# Content API: http://localhost:2368/ghost/api/content/
+
+services:
+  ghost:
+    image: ghost:5-alpine
+    container_name: guardians-ghost
+    restart: always
+    ports:
+      - "2368:2368"
+    environment:
+      # Required
+      url: ${GHOST_URL:-http://localhost:2368}
+      
+      # Database - SQLite for simplicity, swap to MySQL for production scale
+      database__client: sqlite3
+      database__connection__filename: /var/lib/ghost/content/data/ghost.db
+      
+      # Mail - configure for contact form / subscriber notifications
+      # mail__transport: SMTP
+      # mail__options__host: smtp.example.com
+      # mail__options__port: 587
+      # mail__options__auth__user: your@email.com
+      # mail__options__auth__pass: your-password
+      
+      # Privacy
+      privacy__useGravatar: "false"
+      privacy__useUpdateCheck: "false"
+    volumes:
+      - ghost_data:/var/lib/ghost/content
+    healthcheck:
+      test: ["CMD-SHELL", "wget -q --spider http://localhost:2368 || exit 1"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+volumes:
+  ghost_data:
+    driver: local

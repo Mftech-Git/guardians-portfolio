@@ -1,0 +1,163 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #1A3A4A #0D1117;
+  }
+
+  *::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: #0D1117;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background: #1A3A4A;
+    border-radius: 4px;
+  }
+
+  *::-webkit-scrollbar-thumb:hover {
+    background: #00E5FF;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-guardian-black text-white font-body antialiased;
+    background-image:
+      radial-gradient(ellipse at top, rgba(0, 229, 255, 0.03) 0%, transparent 50%),
+      radial-gradient(ellipse at bottom, rgba(245, 197, 24, 0.02) 0%, transparent 50%);
+    min-height: 100vh;
+  }
+
+  ::selection {
+    @apply bg-guardian-cyan/30 text-white;
+  }
+}
+
+@layer components {
+  /* Glow effects */
+  .glow-cyan {
+    box-shadow:
+      0 0 15px rgba(0, 229, 255, 0.15),
+      0 0 30px rgba(0, 229, 255, 0.05);
+  }
+
+  .glow-border {
+    @apply border border-guardian-cyan/30 relative;
+    box-shadow:
+      0 0 20px rgba(0, 229, 255, 0.1),
+      inset 0 0 20px rgba(0, 229, 255, 0.05);
+  }
+
+  .glow-border::before {
+    content: '';
+    @apply absolute inset-0 pointer-events-none;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(0, 229, 255, 0.1),
+      transparent
+    );
+    background-size: 200% 100%;
+    animation: trace-flow 3s linear infinite;
+  }
+
+  /* Circuit trace background */
+  .circuit-bg {
+    background-image:
+      linear-gradient(90deg, transparent 49%, rgba(26, 58, 74, 0.3) 49%, rgba(26, 58, 74, 0.3) 51%, transparent 51%),
+      linear-gradient(0deg, transparent 49%, rgba(26, 58, 74, 0.3) 49%, rgba(26, 58, 74, 0.3) 51%, transparent 51%);
+    background-size: 60px 60px;
+  }
+
+  /* Text glow */
+  .text-glow {
+    text-shadow:
+      0 0 10px currentColor,
+      0 0 20px currentColor,
+      0 0 40px currentColor;
+  }
+
+  .text-glow-sm {
+    text-shadow:
+      0 0 8px currentColor,
+      0 0 16px currentColor;
+  }
+
+  /* Card scan effect */
+  .card-scan {
+    @apply relative overflow-hidden;
+  }
+
+  .card-scan::after {
+    content: '';
+    @apply absolute inset-0 pointer-events-none;
+    background: linear-gradient(
+      to bottom,
+      transparent 0%,
+      rgba(0, 229, 255, 0.05) 50%,
+      transparent 100%
+    );
+    height: 100%;
+    animation: scan 4s ease-in-out infinite;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .card-scan:hover::after {
+    opacity: 1;
+  }
+
+  /* Button styles */
+  .btn-primary {
+    @apply px-6 py-3 bg-guardian-cyan/10 border border-guardian-cyan/50 text-guardian-cyan font-display uppercase tracking-wider text-sm rounded-md;
+    @apply hover:bg-guardian-cyan/20 hover:border-guardian-cyan hover:shadow-[0_0_30px_rgba(0,229,255,0.3)];
+    @apply transition-all duration-300;
+  }
+
+  .btn-secondary {
+    @apply px-6 py-3 bg-guardian-gold/10 border border-guardian-gold/50 text-guardian-gold font-display uppercase tracking-wider text-sm rounded-md;
+    @apply hover:bg-guardian-gold/20 hover:border-guardian-gold hover:shadow-[0_0_30px_rgba(245,197,24,0.3)];
+    @apply transition-all duration-300;
+  }
+
+  /* Section divider */
+  .section-divider {
+    @apply h-px bg-gradient-to-r from-transparent via-guardian-cyan/50 to-transparent;
+  }
+
+  /* Heading accent underline */
+  .heading-accent {
+    @apply relative inline-block;
+  }
+
+  .heading-accent::after {
+    content: '';
+    @apply absolute -bottom-2 left-0 w-1/3 h-0.5 bg-guardian-gold;
+  }
+
+  /* Stat counter */
+  .stat-value {
+    @apply font-display text-2xl sm:text-3xl font-bold text-guardian-cyan;
+  }
+
+  .stat-label {
+    @apply text-gray-500 text-sm mt-1;
+  }
+}
+
+@layer utilities {
+  .animation-delay-100 { animation-delay: 100ms; }
+  .animation-delay-200 { animation-delay: 200ms; }
+  .animation-delay-300 { animation-delay: 300ms; }
+  .animation-delay-500 { animation-delay: 500ms; }
+}
