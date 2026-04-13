@@ -9,6 +9,7 @@ import {
   Workflow,
   Terminal as TerminalIcon,
   Cpu,
+  Cloud,
 } from 'lucide-react'
 import Terminal from '../components/Terminal'
 
@@ -16,14 +17,14 @@ const stats = [
   { value: '1,200+', label: 'Machines Deployed' },
   { value: '48', label: 'Sites Managed' },
   { value: '6+', label: 'Years Experience' },
-  { value: '15min', label: 'vs 2hr Tasks' },
+  { value: '$100K', label: 'Licensing Saved' },
 ]
 
 const skills = [
-  { icon: Server, label: 'Systems Admin', desc: 'Windows Server, AD, GPO, M365' },
-  { icon: Code, label: 'Automation', desc: 'PowerShell, WDS, SmartDeploy' },
-  { icon: Network, label: 'Networking', desc: 'UniFi, Sophos, VLANs, VPN' },
-  { icon: Shield, label: 'Security', desc: 'Wazuh, Endpoint, Compliance' },
+  { icon: Cloud, label: 'Microsoft 365', desc: 'Exchange Online, Entra ID, SharePoint, Teams, Intune, Purview' },
+  { icon: Server, label: 'Infrastructure', desc: 'Windows Server, AD, GPO, Hyper-V, Veeam, Storage' },
+  { icon: Code, label: 'Automation', desc: 'PowerShell, SmartDeploy, WDS, PXE, BIOS Tagging' },
+  { icon: Network, label: 'Networking', desc: 'UniFi, Sophos, FortiGate, VLANs, VPN, 802.1X' },
 ]
 
 export default function Home() {
@@ -31,11 +32,8 @@ export default function Home() {
     <div className="pt-16">
       {/* Hero Section */}
       <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
-        {/* Background Effects */}
         <div className="absolute inset-0 circuit-bg opacity-30" />
         <div className="absolute inset-0 bg-gradient-to-b from-guardian-black via-transparent to-guardian-black" />
-
-        {/* Animated glow orbs */}
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-guardian-cyan/5 rounded-full blur-3xl animate-pulse" />
         <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-guardian-gold/5 rounded-full blur-3xl animate-pulse animation-delay-500" />
 
@@ -52,16 +50,18 @@ export default function Home() {
                 <span className="text-guardian-cyan text-sm font-mono">Available for opportunities</span>
               </div>
 
-              <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+              <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold mb-2 leading-tight">
                 <span className="text-white">Levi Oniszko</span>
-                <br />
-                <span className="text-guardian-cyan">IT Professional</span>
               </h1>
+              <h2 className="font-display text-2xl sm:text-3xl font-bold mb-6">
+                <span className="text-guardian-cyan">M365 &amp; Infrastructure</span>{' '}
+                <span className="text-guardian-gold">Specialist</span>
+              </h2>
 
               <p className="text-xl text-gray-400 mb-8 leading-relaxed max-w-xl">
-                Systems administrator and automation specialist with a proven track record
-                of managing enterprise infrastructure. I build solutions that turn
-                <span className="text-guardian-gold"> 2-hour tasks into 15-minute wins</span>.
+                Systems administrator with 6+ years in enterprise IT, specializing in
+                Microsoft 365 administration, Windows infrastructure, and PowerShell automation.
+                I solve problems at scale and leave every environment better than I found it.
               </p>
 
               <div className="flex flex-wrap gap-4">
@@ -90,7 +90,7 @@ export default function Home() {
               </div>
             </motion.div>
 
-            {/* Right Content - Logo + floating icons */}
+            {/* Right Content - Logo */}
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -101,7 +101,7 @@ export default function Home() {
                 <div className="absolute inset-0 bg-guardian-cyan/20 rounded-full blur-3xl scale-150" />
                 <img
                   src="/logo.png"
-                  alt="Guardians AZ Shield"
+                  alt="Mainframe Tech Shield"
                   className="relative w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96 object-contain animate-float"
                 />
                 <div className="absolute inset-0 animate-spin" style={{ animationDuration: '20s' }}>
@@ -149,9 +149,9 @@ export default function Home() {
             </h2>
             <p className="text-gray-400 max-w-2xl mx-auto">
               Type <code className="text-guardian-cyan font-mono bg-guardian-navy/50 px-2 py-0.5 rounded">help</code> to
-              see available commands. Try <code className="text-guardian-cyan font-mono bg-guardian-navy/50 px-2 py-0.5 rounded">skills</code>,{' '}
-              <code className="text-guardian-cyan font-mono bg-guardian-navy/50 px-2 py-0.5 rounded">experience</code>, or{' '}
-              <code className="text-guardian-cyan font-mono bg-guardian-navy/50 px-2 py-0.5 rounded">projects</code>.
+              see available commands. Try <code className="text-guardian-cyan font-mono bg-guardian-navy/50 px-2 py-0.5 rounded">m365</code>,{' '}
+              <code className="text-guardian-cyan font-mono bg-guardian-navy/50 px-2 py-0.5 rounded">skills</code>, or{' '}
+              <code className="text-guardian-cyan font-mono bg-guardian-navy/50 px-2 py-0.5 rounded">experience</code>.
             </p>
           </motion.div>
           <motion.div
@@ -180,7 +180,7 @@ export default function Home() {
               <span className="text-guardian-cyan">Expertise</span>
             </h2>
             <p className="text-gray-400 max-w-2xl mx-auto">
-              Specialized in enterprise IT infrastructure with a focus on automation and efficiency.
+              Deep specialization in Microsoft 365 and Windows infrastructure. I learn what needs to be learned and deliver.
             </p>
           </motion.div>
 
@@ -235,9 +235,10 @@ export default function Home() {
                 <ul className="space-y-2 mb-8">
                   {[
                     'Custom PowerShell automation scripts',
-                    'SmartDeploy integration & optimization',
-                    'Automated BIOS asset tagging & naming',
+                    'SmartDeploy + WDS integration & optimization',
+                    'Automated BIOS asset tagging & site-based naming',
                     'Snipe-IT asset tracking implementation',
+                    'Zero disruption to clinical operations',
                   ].map((item) => (
                     <li key={item} className="flex items-center gap-2 text-sm text-gray-300">
                       <span className="w-1.5 h-1.5 bg-guardian-cyan rounded-full" />
@@ -290,7 +291,7 @@ foreach ($site in $sites) {
             </h2>
             <p className="text-gray-400 text-lg mb-8 max-w-2xl mx-auto">
               I'm currently open to new opportunities in systems administration,
-              cloud infrastructure, or IT leadership roles. Let's discuss how I can help your organization.
+              M365 &amp; cloud infrastructure, or IT leadership roles. Let's discuss how I can help your organization.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <Link to="/resume" className="btn-primary">View Resume</Link>

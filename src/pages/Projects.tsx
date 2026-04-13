@@ -8,6 +8,8 @@ import {
   Phone,
   FileSearch,
   Server,
+  Cloud,
+  Mail,
 } from 'lucide-react'
 
 const projects = [
@@ -28,22 +30,76 @@ const projects = [
       'SmartDeploy image management and customization',
       'Automated computer naming with BIOS asset tagging',
       'Snipe-IT integration for real-time inventory tracking',
-      'Auto-logon user creation automation (major team pain point solved)',
-      'Site coordinator training and documentation',
+      'Auto-logon user creation automation',
+      'Zero disruption to clinical operations',
     ],
     featured: true,
+  },
+  {
+    id: 'm365-licensing',
+    title: 'M365 Licensing Audit & Optimization',
+    description: 'Identified approximately $100,000 in unnecessary Microsoft 365 licensing before renewal, preventing the expenditure entirely.',
+    longDescription: `Conducted a comprehensive audit of the organization's Microsoft 365 licensing ahead of renewal at Arizona Community Physicians. Analyzed SKU assignments across 800+ users, identified redundant and over-provisioned licenses, and presented findings to leadership. The $100K savings was recognized with an out-of-cycle 8% merit raise and performance bonus within four months of hire.`,
+    icon: Cloud,
+    tags: ['M365', 'Licensing', 'Cost Optimization', 'Entra ID'],
+    metrics: [
+      { label: 'Savings', value: '~$100K' },
+      { label: 'Users Audited', value: '800+' },
+      { label: 'Timeline', value: '4 months' },
+    ],
+    highlights: [
+      'Full SKU analysis across 800+ users',
+      'Identified redundant and over-provisioned licenses',
+      'Presented recommendations to leadership',
+      'Earned out-of-cycle merit raise and bonus',
+    ],
+    featured: true,
+  },
+  {
+    id: 'onedrive-sharepoint',
+    title: 'OneDrive & SharePoint Cloud Migration',
+    description: 'Led organization-wide migration from on-premises mapped drives to OneDrive and SharePoint Online.',
+    icon: Cloud,
+    tags: ['OneDrive', 'SharePoint', 'M365', 'Migration'],
+    metrics: [
+      { label: 'Users Migrated', value: '800+' },
+      { label: 'Scope', value: 'Org-wide' },
+    ],
+    highlights: [
+      'Migrated all staff from on-prem mapped drives to OneDrive',
+      'Assisted with SharePoint Online migration',
+      'Produced end-user training videos (Clipchamp, Sway)',
+      'Data preservation and Known Folder Move via GPO',
+    ],
+    featured: false,
+  },
+  {
+    id: 'sophos-email',
+    title: 'Sophos Email Security Administration',
+    description: 'End-to-end administration of Sophos Email Security integrated with Exchange Online.',
+    icon: Mail,
+    tags: ['Sophos', 'Email Security', 'Exchange Online', 'HIPAA'],
+    metrics: [
+      { label: 'Coverage', value: '50+ clinics' },
+    ],
+    highlights: [
+      'Policy management and quarantine workflows',
+      'Mail flow controls and transport rules',
+      'Escalation coordination with Exchange Online',
+      'Spam filter tuning for healthcare compliance',
+    ],
+    featured: false,
   },
   {
     id: 'smartdeploy-wds',
     title: 'SmartDeploy/WDS Automation (OPCS)',
     description: 'Built imaging and deployment infrastructure at Old Pueblo Community Services, cutting build times from 2 hours to under 20 minutes.',
-    longDescription: `At OPCS, implemented SmartDeploy integrated with WDS and Hyper-V on Server 2022 to create a streamlined imaging pipeline. This was the foundation that proved the concept I later scaled at ACP. Automated Windows 10 deployments with custom answer files and post-deployment scripts.`,
+    longDescription: `At OPCS, implemented SmartDeploy integrated with WDS and Hyper-V on Server 2022 to create a streamlined imaging pipeline. This was the foundation that proved the concept I later scaled at ACP.`,
     icon: Server,
-    tags: ['SmartDeploy', 'WDS', 'Hyper-V', 'Server 2022', 'Win10'],
+    tags: ['SmartDeploy', 'WDS', 'Hyper-V', 'Server 2022'],
     metrics: [
       { label: 'Build Time', value: '<20min' },
       { label: 'Previous', value: '2 hours' },
-      { label: 'Completed', value: 'Nov 2022' },
     ],
     highlights: [
       'WDS + SmartDeploy integration on Server 2022',
@@ -51,32 +107,30 @@ const projects = [
       'Custom answer files and post-imaging scripts',
       'Documented and trained team on processes',
     ],
-    featured: true,
+    featured: false,
   },
   {
     id: 'deployment-automation',
     title: 'PowerShell Deployment Suite',
-    description: 'Suite of scripts that transformed tedious 2-hour deployment tasks into 15-minute automated workflows.',
+    description: 'Suite of scripts that transformed tedious deployment tasks into streamlined automated workflows.',
     icon: Code,
     tags: ['PowerShell', 'Automation', 'Active Directory', 'BIOS'],
     metrics: [
       { label: 'Time per Deploy', value: '15 min' },
       { label: 'Previous Time', value: '2 hours' },
-      { label: 'Scripts Built', value: '20+' },
     ],
     highlights: [
       'Auto-logon user creation automation',
       'AD computer account auto-placement by site OU',
       'BIOS asset tag scripting for inventory',
       'SmartDeploy task automation integration',
-      'Error handling and logging throughout',
     ],
     featured: false,
   },
   {
     id: 'asset-management',
     title: 'Snipe-IT Asset Management',
-    description: 'Deployed and automated Snipe-IT for organization-wide asset tracking synced with deployment pipeline.',
+    description: 'Deployed and configured Snipe-IT for organization-wide asset tracking synced with deployment pipeline.',
     icon: Database,
     tags: ['Snipe-IT', 'Asset Management', 'Automation'],
     metrics: [
@@ -92,11 +146,27 @@ const projects = [
     featured: false,
   },
   {
+    id: 'veeam-backup',
+    title: 'Veeam M365 Backup & Storage Migration',
+    description: 'Managed Veeam Backup for M365 and assisted with enterprise storage migration from Pure Storage to TrueNAS.',
+    icon: Database,
+    tags: ['Veeam', 'M365 Backup', 'Pure Storage', 'TrueNAS'],
+    metrics: [
+      { label: 'Services Covered', value: '3' },
+    ],
+    highlights: [
+      'Veeam M365 covering Exchange, SharePoint, OneDrive',
+      'Tested recovery procedures and documentation',
+      'Assisted with Pure Storage to TrueNAS migration',
+    ],
+    featured: false,
+  },
+  {
     id: 'voip-migration',
     title: 'VoIP Infrastructure Migration',
     description: 'Led VoIP platform migration to GoTo Connect with infrastructure overhaul.',
     icon: Phone,
-    tags: ['VoIP', 'GoTo Connect', '3CX', 'Infrastructure'],
+    tags: ['VoIP', 'GoTo Connect', 'Infrastructure'],
     metrics: [
       { label: 'Platform', value: 'GoTo Connect' },
     ],
@@ -109,53 +179,37 @@ const projects = [
     featured: false,
   },
   {
-    id: 'compliance-keystone',
-    title: 'Compliance Keystone',
-    description: 'Built regulatory compliance framework and documentation for healthcare organization.',
-    icon: FileSearch,
-    tags: ['Compliance', 'Healthcare', 'Documentation'],
-    metrics: [
-      { label: 'Framework', value: 'Built' },
-    ],
-    highlights: [
-      'Regulatory compliance framework',
-      'Policy documentation and procedures',
-      'Staff training materials',
-    ],
-    featured: false,
-  },
-  {
     id: 'network-infrastructure',
     title: 'Network Infrastructure',
-    description: 'Managed multi-site network infrastructure with UniFi, Sophos, and Fortigate equipment.',
+    description: 'Managed multi-site network infrastructure with UniFi, Sophos, and FortiGate equipment.',
     icon: Network,
-    tags: ['UniFi', 'Sophos', 'Fortigate', 'VLANs'],
+    tags: ['UniFi', 'Sophos', 'FortiGate', 'VLANs'],
     metrics: [
       { label: 'Sites', value: '48' },
-      { label: 'VLANs', value: '10+' },
     ],
     highlights: [
       'UniFi network management across sites',
       'VLAN segmentation design',
       'VPN configuration and management',
-      'Firewall rule management (Sophos, Fortigate, Meraki, SonicWall)',
+      'Firewall rule management (Sophos, FortiGate, Meraki, SonicWall)',
     ],
     featured: false,
   },
   {
     id: 'dmz-selfhost',
     title: 'Self-Hosted DMZ Infrastructure',
-    description: 'Building a secure DMZ for self-hosting this portfolio and personal projects.',
+    description: 'Designed and built a secure DMZ for self-hosting this portfolio, Ghost CMS, and AI services.',
     icon: Shield,
-    tags: ['Self-Hosting', 'DMZ', 'Security', 'UniFi'],
+    tags: ['Self-Hosting', 'DMZ', 'Docker', 'UniFi', 'Ollama'],
     metrics: [
-      { label: 'Status', value: 'In Progress' },
+      { label: 'Services', value: '5+' },
     ],
     highlights: [
       'Dual WAN configuration on UXG',
-      'Proper network segmentation',
-      'Self-hosted portfolio site',
-      'Future: Ollama AI chatbot integration',
+      'Proper network segmentation from home network',
+      'Self-hosted portfolio (React/Vite) + Ghost CMS',
+      'Ollama AI chatbot integration',
+      'Docker Compose orchestration',
     ],
     featured: false,
   },
@@ -179,8 +233,8 @@ export default function Projects() {
             <span className="text-guardian-cyan">Projects</span>
           </h1>
           <p className="text-xl text-gray-400 leading-relaxed">
-            Real-world solutions I've built and deployed. Every project focuses on automation,
-            efficiency, and solving actual business problems.
+            Real-world projects I've delivered - from enterprise migrations to cloud modernization
+            to building infrastructure from scratch.
           </p>
         </motion.div>
 

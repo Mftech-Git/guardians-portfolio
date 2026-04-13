@@ -320,7 +320,7 @@ export default function Blog() {
             <div className="mt-3 flex items-center gap-2 text-xs text-gray-500">
               <Ghost size={12} className="text-guardian-cyan" />
               <span>
-                Powered by Ghost CMS —{' '}
+                Powered by Ghost CMS -{' '}
                 <a href={`${ghostUrl}/ghost`} target="_blank" rel="noopener noreferrer"
                   className="text-guardian-cyan hover:underline inline-flex items-center gap-1">
                   Open Editor <ExternalLink size={10} />

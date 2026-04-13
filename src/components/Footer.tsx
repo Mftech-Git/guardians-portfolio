@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { Github, Linkedin, Mail, MapPin, Phone } from 'lucide-react'
+import { Linkedin, Mail, MapPin, Phone } from 'lucide-react'
 
 export default function Footer() {
   const currentYear = new Date().getFullYear()
@@ -11,19 +11,19 @@ export default function Footer() {
           {/* Brand */}
           <div>
             <div className="flex items-center gap-3 mb-4">
-              <img src="/logo.png" alt="Guardians AZ" className="h-10 w-10" />
+              <img src="/logo.png" alt="Mainframe Tech" className="h-10 w-10" />
               <div>
                 <span className="font-display text-lg font-bold text-white tracking-wider">
-                  GUARDIANS <span className="text-guardian-cyan">AZ</span>
+                  MAINFRAME <span className="text-guardian-cyan">TECH</span>
                 </span>
-                <p className="text-xs text-guardian-cyan/60 tracking-widest uppercase">
-                  To Mend and Defend
+                <p className="text-[9px] text-guardian-gold/70 tracking-widest uppercase">
+                  Guardians AZ - To Mend and Defend
                 </p>
               </div>
             </div>
             <p className="text-gray-400 text-sm leading-relaxed">
-              IT Professional specializing in systems administration,
-              automation, and enterprise infrastructure.
+              IT Professional specializing in Microsoft 365, Windows Server infrastructure,
+              automation, and enterprise systems administration.
             </p>
           </div>
 
@@ -33,7 +33,7 @@ export default function Footer() {
               Quick Links
             </h3>
             <ul className="space-y-2">
-              {['About', 'Projects', 'Blog', 'Resume', 'Contact'].map((item) => (
+              {['About', 'Projects', 'Resume', 'Contact'].map((item) => (
                 <li key={item}>
                   <Link
                     to={`/${item.toLowerCase()}`}
@@ -43,6 +43,17 @@ export default function Footer() {
                   </Link>
                 </li>
               ))}
+              <li>
+                <a
+                  href="https://linkedin.com/in/levi-oniszko"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 text-gray-400 hover:text-guardian-cyan transition-colors text-sm"
+                >
+                  <Linkedin size={14} />
+                  LinkedIn
+                </a>
+              </li>
             </ul>
           </div>
 
@@ -54,11 +65,11 @@ export default function Footer() {
             <ul className="space-y-3">
               <li>
                 <a
-                  href="mailto:mftech@mainframetech.us"
+                  href="mailto:loniszko@mainframetech.us"
                   className="flex items-center gap-2 text-gray-400 hover:text-guardian-cyan transition-colors text-sm"
                 >
                   <Mail size={16} />
-                  <span>mftech@mainframetech.us</span>
+                  <span>loniszko@mainframetech.us</span>
                 </a>
               </li>
               <li>
@@ -73,7 +84,7 @@ export default function Footer() {
               <li>
                 <span className="flex items-center gap-2 text-gray-400 text-sm">
                   <MapPin size={16} />
-                  <span>Phoenix, Arizona</span>
+                  <span>Tucson, Arizona</span>
                 </span>
               </li>
             </ul>
@@ -83,7 +94,7 @@ export default function Footer() {
         {/* Bottom Bar */}
         <div className="mt-12 pt-8 border-t border-guardian-trace/30 flex flex-col sm:flex-row justify-between items-center gap-4">
           <p className="text-gray-500 text-xs">
-            &copy; {currentYear} Mainframe Tech LLC &mdash; Guardians AZ. All rights reserved.
+            &copy; {currentYear} Mainframe Tech LLC - Guardians AZ. All rights reserved.
           </p>
           <p className="text-gray-600 text-xs font-mono">
             Built with React + Vite &bull; Self-hosted with pride

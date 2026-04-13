@@ -7,7 +7,6 @@ const navLinks = [
   { path: '/', label: 'Home' },
   { path: '/about', label: 'About' },
   { path: '/projects', label: 'Projects' },
-  { path: '/blog', label: 'Blog' },
   { path: '/resume', label: 'Resume' },
   { path: '/contact', label: 'Contact' },
 ]
@@ -25,17 +24,17 @@ export default function Navbar() {
             <div className="relative">
               <img
                 src="/logo.png"
-                alt="Guardians AZ"
+                alt="Mainframe Tech"
                 className="h-10 w-10 object-contain transition-transform group-hover:scale-110"
               />
               <div className="absolute inset-0 bg-guardian-cyan/20 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity" />
             </div>
             <div className="hidden sm:block">
               <span className="font-display text-lg font-bold text-white tracking-wider">
-                GUARDIANS <span className="text-guardian-cyan">AZ</span>
+                MAINFRAME <span className="text-guardian-cyan">TECH</span>
               </span>
-              <p className="text-[10px] text-guardian-cyan/60 tracking-widest uppercase -mt-1">
-                To Mend and Defend
+              <p className="text-[9px] text-guardian-gold/70 tracking-widest uppercase -mt-1">
+                Guardians AZ - To Mend and Defend
               </p>
             </div>
           </Link>

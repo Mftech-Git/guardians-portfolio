@@ -8,6 +8,8 @@ import {
   MessageSquare,
   Clock,
   CheckCircle,
+  AlertCircle,
+  Linkedin,
 } from 'lucide-react'
 
 export default function Contact() {
@@ -19,14 +21,35 @@ export default function Contact() {
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
+  const [error, setError] = useState('')
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
-    // TODO: Wire up actual form handler
-    await new Promise((resolve) => setTimeout(resolve, 1500))
-    setIsSubmitting(false)
-    setIsSubmitted(true)
+    setError('')
+
+    try {
+      const res = await fetch('https://formspree.io/f/xpwzgkrd', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: formState.name,
+          email: formState.email,
+          _subject: formState.subject,
+          message: formState.message,
+        }),
+      })
+
+      if (res.ok) {
+        setIsSubmitted(true)
+      } else {
+        setError('Something went wrong. Please try emailing me directly.')
+      }
+    } catch {
+      setError('Network error. Please try emailing me directly.')
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -74,7 +97,14 @@ export default function Contact() {
                 </button>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <div>
+                {error && (
+                  <div className="mb-6 p-4 bg-red-500/10 border border-red-500/30 rounded-lg flex items-center gap-3 text-red-400 text-sm">
+                    <AlertCircle size={18} />
+                    {error}
+                  </div>
+                )}
+                <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid sm:grid-cols-2 gap-6">
                   <div>
                     <label htmlFor="name" className="block text-sm font-display text-gray-400 mb-2">Name</label>
@@ -146,6 +176,7 @@ export default function Contact() {
                   )}
                 </button>
               </form>
+              </div>
             )}
           </motion.div>
 
@@ -163,9 +194,9 @@ export default function Contact() {
               </h3>
               <ul className="space-y-4">
                 <li>
-                  <a href="mailto:mftech@mainframetech.us" className="flex items-center gap-3 text-gray-400 hover:text-guardian-cyan transition-colors">
+                  <a href="mailto:loniszko@mainframetech.us" className="flex items-center gap-3 text-gray-400 hover:text-guardian-cyan transition-colors">
                     <Mail size={18} />
-                    <span>mftech@mainframetech.us</span>
+                    <span>loniszko@mainframetech.us</span>
                   </a>
                 </li>
                 <li>
@@ -175,9 +206,15 @@ export default function Contact() {
                   </a>
                 </li>
                 <li>
+                  <a href="https://linkedin.com/in/levi-oniszko" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-gray-400 hover:text-guardian-cyan transition-colors">
+                    <Linkedin size={18} />
+                    <span>linkedin.com/in/levi-oniszko</span>
+                  </a>
+                </li>
+                <li>
                   <span className="flex items-center gap-3 text-gray-400">
                     <MapPin size={18} />
-                    <span>Phoenix, Arizona</span>
+                    <span>Tucson, Arizona</span>
                   </span>
                 </li>
               </ul>
@@ -210,8 +247,8 @@ export default function Contact() {
                 <span className="font-display text-white font-semibold">Currently Available</span>
               </div>
               <p className="text-gray-400 text-sm">
-                Open to full-time positions and contract work in systems administration,
-                cloud infrastructure (M365/Entra ID), and IT leadership.
+                Open to full-time positions in systems administration,
+                M365 &amp; cloud infrastructure, and IT leadership.
               </p>
             </motion.div>
           </div>
