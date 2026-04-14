@@ -45,7 +45,7 @@ export default function Footer() {
               ))}
               <li>
                 <a
-                  href="https://linkedin.com/in/levi-oniszko"
+                  href="https://linkedin.com/in/loniszko"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-2 text-gray-400 hover:text-guardian-cyan transition-colors text-sm"

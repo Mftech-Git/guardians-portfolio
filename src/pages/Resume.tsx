@@ -165,9 +165,9 @@ export default function Resume() {
               <MapPin size={14} />
               Tucson, AZ
             </span>
-            <a href="https://linkedin.com/in/levi-oniszko" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-guardian-cyan transition-colors">
+            <a href="https://linkedin.com/in/loniszko" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-guardian-cyan transition-colors">
               <Linkedin size={14} />
-              linkedin.com/in/levi-oniszko
+              linkedin.com/in/loniszko
             </a>
           </div>
         </motion.div>

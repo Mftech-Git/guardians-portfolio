@@ -120,7 +120,7 @@ const commandResponses: Record<string, TerminalLine[]> = {
   contact: [
     { text: '  ✉  loniszko@mainframetech.us', color: COLORS.gold },
     { text: '  ☎  520.906.4889', color: COLORS.gold },
-    { text: '  🔗  linkedin.com/in/levi-oniszko', color: COLORS.gold },
+    { text: '  🔗  linkedin.com/in/loniszko', color: COLORS.gold },
     { text: '  🏢  Mainframe Tech LLC - Tucson, AZ', color: COLORS.gold },
   ],
 }
