@@ -206,9 +206,9 @@ export default function Contact() {
                   </a>
                 </li>
                 <li>
-                  <a href="https://linkedin.com/in/loniszko" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-gray-400 hover:text-guardian-cyan transition-colors">
+                  <a href="https://linkedin.com/in/levi-oniszko" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-gray-400 hover:text-guardian-cyan transition-colors">
                     <Linkedin size={18} />
-                    <span>linkedin.com/in/loniszko</span>
+                    <span>linkedin.com/in/levi-oniszko</span>
                   </a>
                 </li>
                 <li>
