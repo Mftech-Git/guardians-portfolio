@@ -1,0 +1,14 @@
+{
+  "navigationFallback": {
+    "rewrite": "/index.html",
+    "exclude": ["/assets/*", "/logo.png", "/logo-animation.mp4", "*.css", "*.js", "*.png", "*.jpg", "*.svg", "*.ico", "*.mp3"]
+  },
+  "globalHeaders": {
+    "X-Content-Type-Options": "nosniff",
+    "X-Frame-Options": "SAMEORIGIN",
+    "Referrer-Policy": "strict-origin-when-cross-origin"
+  },
+  "mimeTypes": {
+    ".mp3": "audio/mpeg"
+  }
+}

@@ -1,5 +1,5 @@
 // Ghost Content API client
-// No SDK needed — Ghost's API is just REST + JSON
+// No SDK needed - Ghost's API is just REST + JSON
 
 const GHOST_URL = import.meta.env.VITE_GHOST_URL || 'http://localhost:2368'
 const GHOST_KEY = import.meta.env.VITE_GHOST_CONTENT_KEY || ''
