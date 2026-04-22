@@ -29,14 +29,18 @@ export default function Contact() {
     setError('')
 
     try {
-      const res = await fetch('https://formspree.io/f/xpwzgkrd', {
+      const res = await fetch('https://formsubmit.co/ajax/loniszko@mainframetech.us', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
         body: JSON.stringify({
           name: formState.name,
           email: formState.email,
-          _subject: formState.subject,
+          _subject: `Portfolio Contact: ${formState.subject}`,
           message: formState.message,
+          _template: 'table',
         }),
       })
 

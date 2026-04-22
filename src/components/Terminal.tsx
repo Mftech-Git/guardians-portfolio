@@ -170,6 +170,25 @@ export default function Terminal() {
       return
     }
 
+    // Easter egg
+    if (c === 'derp dog') {
+      setLines(prev => [...prev, prompt, { text: '', color: COLORS.text },
+        { text: '  ██████╗ ███████╗██████╗ ██████╗', color: COLORS.gold },
+        { text: '  ██╔══██╗██╔════╝██╔══██╗██╔══██╗', color: COLORS.gold },
+        { text: '  ██║  ██║█████╗  ██████╔╝██████╔╝', color: COLORS.gold },
+        { text: '  ██║  ██║██╔══╝  ██╔══██╗██╔═══╝', color: COLORS.gold },
+        { text: '  ██████╔╝███████╗██║  ██║██║', color: COLORS.gold },
+        { text: '  ╚═════╝ ╚══════╝╚═╝  ╚═╝╚═╝', color: COLORS.gold },
+        { text: '', color: COLORS.text },
+        { text: '  You found the secret. Loading the card...', color: COLORS.cyan },
+        { text: '', color: COLORS.text },
+      ])
+      setTimeout(() => {
+        window.location.href = '/card'
+      }, 1500)
+      return
+    }
+
     const resp = commandResponses[c] || [
       { text: `  '${cmd}' is not recognized. Type 'help' for commands.`, color: COLORS.red },
     ]
