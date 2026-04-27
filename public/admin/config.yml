@@ -2,8 +2,6 @@ backend:
   name: github
   repo: Mftech-Git/guardians-portfolio
   branch: main
-  auth_type: pkce
-  app_id: Ov23lilJ86VEFCMt1Toi
 
 media_folder: public/uploads
 public_folder: /uploads
