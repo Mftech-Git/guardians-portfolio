@@ -5,9 +5,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="robots" content="noindex" />
     <title>Blog Admin — Mainframe Tech</title>
-    <link rel="cms-config-url" type="application/json" href="/admin/config.yml" />
   </head>
   <body>
+    <script>
+      window.CMS_MANUAL_INIT = true;
+    </script>
     <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+    <script>
+      CMS.init({
+        config: {
+          backend: {
+            name: 'github',
+            repo: 'Mftech-Git/guardians-portfolio',
+            branch: 'main',
+            auth_type: 'pkce',
+            app_id: 'Ov23lilJ86VEFCMt1Toi',
+          },
+          media_folder: 'public/uploads',
+          public_folder: '/uploads',
+          collections: [
+            {
+              name: 'posts',
+              label: 'Blog Posts',
+              label_singular: 'Post',
+              folder: 'src/content/posts',
+              create: true,
+              slug: '{{slug}}',
+              preview_path: 'blog/{{slug}}',
+              fields: [
+                { label: 'Title', name: 'title', widget: 'string' },
+                { label: 'Excerpt', name: 'excerpt', widget: 'text' },
+                { label: 'Featured', name: 'featured', widget: 'boolean', default: false },
+                { label: 'Tags', name: 'tags', widget: 'list', allow_add: true, field: { label: 'Tag', name: 'tag', widget: 'string' } },
+                { label: 'Publish Date', name: 'date', widget: 'datetime' },
+                { label: 'Feature Image', name: 'feature_image', widget: 'image', required: false },
+                { label: 'Body', name: 'body', widget: 'markdown' },
+              ],
+            },
+          ],
+        },
+      });
+    </script>
   </body>
 </html>
