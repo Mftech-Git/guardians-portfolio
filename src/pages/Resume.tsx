@@ -146,9 +146,9 @@ export default function Resume() {
                 Systems Administrator | Microsoft 365 &amp; Infrastructure Specialist
               </p>
             </div>
-            <a href="/Levi_Oniszko_Resume_v04.26.docx" download="Levi_Oniszko_Resume_v04.26.docx" className="btn-primary inline-flex items-center gap-2 self-start">
+            <a href="/Levi_Oniszko_Resume.pdf" download="Levi_Oniszko_Resume.pdf" className="btn-primary inline-flex items-center gap-2 self-start">
               <Download size={16} />
-              Download PDF
+              Download My Resume
             </a>
           </div>
 

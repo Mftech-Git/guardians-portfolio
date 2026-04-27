@@ -9,6 +9,8 @@
     "Referrer-Policy": "strict-origin-when-cross-origin"
   },
   "mimeTypes": {
-    ".mp3": "audio/mpeg"
+    ".mp3": "audio/mpeg",
+    ".yml": "text/yaml",
+    ".yaml": "text/yaml"
   }
 }
