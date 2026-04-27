@@ -7,38 +7,44 @@
     <title>Blog Admin — Mainframe Tech</title>
   </head>
   <body>
-    <script type="application/x-decap-cms-config">
-backend:
-  name: github
-  repo: Mftech-Git/guardians-portfolio
-  branch: main
-  auth_type: pkce
-  app_id: Ov23lilJ86VEFCMt1Toi
-
-media_folder: public/uploads
-public_folder: /uploads
-
-collections:
-  - name: posts
-    label: Blog Posts
-    label_singular: Post
-    folder: src/content/posts
-    create: true
-    slug: "{{slug}}"
-    preview_path: "blog/{{slug}}"
-    fields:
-      - { label: Title, name: title, widget: string }
-      - { label: Excerpt, name: excerpt, widget: text }
-      - { label: Featured, name: featured, widget: boolean, default: false }
-      - label: Tags
-        name: tags
-        widget: list
-        allow_add: true
-        field: { label: Tag, name: tag, widget: string }
-      - { label: Publish Date, name: date, widget: datetime }
-      - { label: Feature Image, name: feature_image, widget: image, required: false }
-      - { label: Body, name: body, widget: markdown }
+    <script>window.CMS_MANUAL_INIT = true;</script>
+    <script src="https://unpkg.com/decap-cms@3.3.3/dist/decap-cms.js"></script>
+    <script>
+      CMS.init({
+        config: {
+          backend: {
+            name: 'github',
+            repo: 'Mftech-Git/guardians-portfolio',
+            branch: 'main',
+            auth_type: 'pkce',
+            app_id: 'Ov23lilJ86VEFCMt1Toi',
+          },
+          media_folder: 'public/uploads',
+          public_folder: '/uploads',
+          media_library: {
+            name: 'default',
+          },
+          collections: [
+            {
+              name: 'posts',
+              label: 'Blog Posts',
+              label_singular: 'Post',
+              folder: 'src/content/posts',
+              create: true,
+              slug: '{{slug}}',
+              fields: [
+                { label: 'Title', name: 'title', widget: 'string' },
+                { label: 'Excerpt', name: 'excerpt', widget: 'text' },
+                { label: 'Featured', name: 'featured', widget: 'boolean', default: false },
+                { label: 'Tags', name: 'tags', widget: 'list', field: { label: 'Tag', name: 'tag', widget: 'string' } },
+                { label: 'Publish Date', name: 'date', widget: 'datetime' },
+                { label: 'Feature Image', name: 'feature_image', widget: 'image', required: false },
+                { label: 'Body', name: 'body', widget: 'markdown' },
+              ],
+            },
+          ],
+        },
+      });
     </script>
-    <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
   </body>
 </html>
