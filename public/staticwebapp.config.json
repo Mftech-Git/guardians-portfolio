@@ -1,7 +1,7 @@
 {
   "navigationFallback": {
     "rewrite": "/index.html",
-    "exclude": ["/assets/*", "/logo.png", "/logo-animation.mp4", "*.css", "*.js", "*.png", "*.jpg", "*.svg", "*.ico", "*.mp3"]
+    "exclude": ["/assets/*", "/admin/*", "/uploads/*", "/logo.png", "/logo-animation.mp4", "*.css", "*.js", "*.png", "*.jpg", "*.svg", "*.ico", "*.mp3", "*.yml", "*.pdf"]
   },
   "globalHeaders": {
     "X-Content-Type-Options": "nosniff",
