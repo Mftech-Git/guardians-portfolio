@@ -15,7 +15,6 @@ collections:
     folder: src/content/posts
     create: true
     slug: "{{slug}}"
-    preview_path: "blog/{{slug}}"
     fields:
       - { label: Title, name: title, widget: string }
       - { label: Excerpt, name: excerpt, widget: text }
@@ -23,7 +22,6 @@ collections:
       - label: Tags
         name: tags
         widget: list
-        allow_add: true
         field: { label: Tag, name: tag, widget: string }
       - { label: Publish Date, name: date, widget: datetime }
       - { label: Feature Image, name: feature_image, widget: image, required: false }
