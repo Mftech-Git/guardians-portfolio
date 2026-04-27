@@ -1,0 +1,30 @@
+backend:
+  name: github
+  repo: Mftech-Git/guardians-portfolio
+  branch: main
+  auth_type: pkce
+  app_id: Ov23lilJ86VEFCMt1Toi     # ← paste Client ID after OAuth App setup
+
+media_folder: public/uploads
+public_folder: /uploads
+
+collections:
+  - name: posts
+    label: Blog Posts
+    label_singular: Post
+    folder: src/content/posts
+    create: true
+    slug: "{{slug}}"
+    preview_path: "blog/{{slug}}"
+    fields:
+      - { label: Title, name: title, widget: string }
+      - { label: Excerpt, name: excerpt, widget: text }
+      - { label: Featured, name: featured, widget: boolean, default: false }
+      - label: Tags
+        name: tags
+        widget: list
+        allow_add: true
+        field: { label: Tag, name: tag, widget: string }
+      - { label: Publish Date, name: date, widget: datetime }
+      - { label: Feature Image, name: feature_image, widget: image, required: false }
+      - { label: Body, name: body, widget: markdown }

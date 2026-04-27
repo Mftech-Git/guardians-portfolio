@@ -7,6 +7,8 @@ import Projects from './pages/Projects'
 import Card from './pages/Card'
 import Contact from './pages/Contact'
 import Resume from './pages/Resume'
+import Blog from './pages/Blog'
+import BlogPost from './pages/BlogPost'
 
 function App() {
   return (
@@ -20,6 +22,8 @@ function App() {
             <Route path="/card" element={<Card />} />
             <Route path="/resume" element={<Resume />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/blog" element={<Blog />} />
+            <Route path="/blog/:slug" element={<BlogPost />} />
           </Routes>
       </main>
       <Footer />
