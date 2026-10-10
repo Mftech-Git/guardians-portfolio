@@ -16,19 +16,15 @@ const COLORS = {
 
 const introLines: TerminalLine[] = [
   { text: 'Windows PowerShell', color: COLORS.muted },
-  { text: 'Copyright (C) Microsoft Corporation. All rights reserved.', color: COLORS.muted },
   { text: '', color: COLORS.text },
   { text: "PS C:\\Users\\Levi> Get-Portfolio -Candidate 'Levi Oniszko'", color: COLORS.cyan },
   { text: '', color: COLORS.text },
-  { text: '  Name       : Levi "Eli" Oniszko', color: COLORS.gold },
-  { text: '  Title      : Systems Administrator | M365 & Infrastructure Specialist', color: COLORS.gold },
-  { text: '  Location   : Tucson, AZ', color: COLORS.gold },
-  { text: '  Experience : 6+ Years in Enterprise IT', color: COLORS.gold },
-  { text: '  Highlight  : IT Director by 28 - No Degree Required', color: COLORS.gold },
-  { text: '  Brand      : Mainframe Tech - "To Mend and Defend"', color: COLORS.gold },
+  { text: '  Brand : Mainframe Tech - "To Mend and Defend"', color: COLORS.gold },
   { text: '', color: COLORS.text },
-  { text: "  Type 'help' for available commands.", color: COLORS.cyan },
+  { text: "  Type 'help' or tap a command below.", color: COLORS.cyan },
 ]
+
+const quickCommands = ['skills', 'm365', 'experience', 'projects', 'certs', 'contact']
 
 const commandResponses: Record<string, TerminalLine[]> = {
   help: [
@@ -158,7 +154,7 @@ export default function Terminal() {
 
   // Focus input when ready
   useEffect(() => {
-    if (ready && inputRef.current) inputRef.current.focus()
+    if (ready && inputRef.current) inputRef.current.focus({ preventScroll: true })
   }, [ready])
 
   const handleCommand = useCallback((cmd: string) => {
@@ -204,11 +200,11 @@ export default function Terminal() {
   }
 
   const focusInput = () => {
-    if (inputRef.current) inputRef.current.focus()
+    if (inputRef.current) inputRef.current.focus({ preventScroll: true })
   }
 
   return (
-    <div className="w-full max-w-2xl rounded-xl overflow-hidden border border-guardian-border glow-cyan">
+    <div className="w-full max-w-2xl mx-auto xl:mx-0 rounded-xl overflow-hidden border border-guardian-border glow-cyan">
       {/* Title Bar */}
       <div className="bg-[#1E1E1E] px-4 py-2 flex items-center justify-between border-b border-guardian-trace/50">
         <div className="flex items-center gap-2">
@@ -249,7 +245,6 @@ export default function Terminal() {
               onKeyDown={handleKeyDown}
               className="flex-1 bg-transparent border-none outline-none text-white font-mono text-[12.5px]"
               style={{ caretColor: COLORS.cyan }}
-              autoFocus
               spellCheck={false}
               autoComplete="off"
             />
@@ -257,6 +252,21 @@ export default function Terminal() {
           </div>
         )}
         {typing && <span className="animate-blink" style={{ color: COLORS.cyan }}>▌</span>}
+      </div>
+
+      {/* Quick commands */}
+      <div className="bg-[#161616] border-t border-guardian-trace/50 px-3 py-2 flex flex-wrap gap-2">
+        {quickCommands.map(cmd => (
+          <button
+            key={cmd}
+            type="button"
+            disabled={!ready}
+            onClick={() => handleCommand(cmd)}
+            className="px-2.5 py-1 rounded font-mono text-xs text-guardian-cyan bg-guardian-cyan/10 border border-guardian-cyan/30 hover:bg-guardian-cyan/20 disabled:opacity-40 transition-colors"
+          >
+            {cmd}
+          </button>
+        ))}
       </div>
     </div>
   )
