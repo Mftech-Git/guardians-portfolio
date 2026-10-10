@@ -270,14 +270,27 @@ export default function About() {
     <div className="pt-24 pb-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="max-w-3xl mb-16">
-          <h1 className="font-display text-4xl sm:text-5xl font-bold mb-6">
-            <span className="text-white">About</span>{' '}
-            <span className="text-guardian-cyan">Me</span>
-          </h1>
-          <p className="text-xl text-gray-400 leading-relaxed">
-            Systems administrator. Problem solver. The person who figures it out.
-          </p>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="max-w-3xl mb-16 flex flex-col sm:flex-row sm:items-center gap-6 sm:gap-8"
+        >
+          <img
+            src="/levi-oniszko.jpg"
+            alt="Levi Oniszko"
+            width={160}
+            height={160}
+            className="w-32 h-32 sm:w-40 sm:h-40 rounded-2xl object-cover border border-guardian-cyan/30 glow-cyan flex-shrink-0"
+          />
+          <div>
+            <h1 className="font-display text-4xl sm:text-5xl font-bold mb-4">
+              <span className="text-white">About</span>{' '}
+              <span className="text-guardian-cyan">Me</span>
+            </h1>
+            <p className="text-xl text-gray-400 leading-relaxed">
+              Systems administrator. Problem solver. The person who figures it out.
+            </p>
+          </div>
         </motion.div>
 
         <div className="grid lg:grid-cols-3 gap-12">

@@ -1,7 +1,27 @@
 import { motion } from 'framer-motion'
+import { ArrowRight } from 'lucide-react'
 import { useEffect } from 'react'
-import { useLocation } from 'react-router-dom'
-import { projects } from '../data/projects'
+import { Link, useLocation } from 'react-router-dom'
+import { projects, type Project } from '../data/projects'
+
+function TitleLink({ project, children }: { project: Project; children: React.ReactNode }) {
+  if (!project.hasArticle) return <>{children}</>
+  return (
+    <Link to={`/projects/${project.id}`} className="after:absolute after:inset-0 after:content-[''] hover:text-guardian-cyan transition-colors">
+      {children}
+    </Link>
+  )
+}
+
+function ReadCue({ project }: { project: Project }) {
+  if (!project.hasArticle) return null
+  return (
+    <p className="mt-5 inline-flex items-center gap-2 text-sm text-guardian-cyan">
+      Read the full write-up
+      <ArrowRight size={14} />
+    </p>
+  )
+}
 
 export default function Projects() {
   const { hash } = useLocation()
@@ -50,7 +70,7 @@ export default function Projects() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.1 }}
-                className="scroll-mt-24 p-6 sm:p-8 bg-guardian-navy/50 border border-guardian-trace/50 rounded-xl hover:border-guardian-cyan/30 transition-all duration-300"
+                className="relative scroll-mt-24 p-6 sm:p-8 bg-guardian-navy/50 border border-guardian-trace/50 rounded-xl hover:border-guardian-cyan/30 transition-all duration-300"
               >
                 <div className="flex flex-col lg:flex-row gap-8">
                   <div className="flex-1">
@@ -60,7 +80,7 @@ export default function Projects() {
                       </div>
                       <div>
                         <h3 className="font-display text-xl sm:text-2xl font-bold text-white">
-                          {project.title}
+                          <TitleLink project={project}>{project.title}</TitleLink>
                         </h3>
                         <div className="flex flex-wrap gap-2 mt-2">
                           {project.tags.slice(0, 5).map(tag => (
@@ -72,7 +92,7 @@ export default function Projects() {
                       </div>
                     </div>
                     <p className="text-gray-400 mb-6 leading-relaxed">
-                      {project.longDescription}
+                      {project.overview ?? project.description}
                     </p>
                     <div className="space-y-2">
                       <h4 className="font-display text-sm uppercase tracking-wider text-guardian-gold">
@@ -87,6 +107,7 @@ export default function Projects() {
                         ))}
                       </ul>
                     </div>
+                    <ReadCue project={project} />
                   </div>
                   <div className="lg:w-48 flex-shrink-0">
                     <div className="grid grid-cols-2 lg:grid-cols-1 gap-4">
@@ -117,12 +138,14 @@ export default function Projects() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3 + i * 0.1 }}
-                className="scroll-mt-24 p-6 bg-guardian-navy/30 border border-guardian-trace/30 rounded-lg hover:border-guardian-cyan/30 transition-all duration-300 card-scan"
+                className="relative scroll-mt-24 p-6 bg-guardian-navy/30 border border-guardian-trace/30 rounded-lg hover:border-guardian-cyan/30 transition-all duration-300 card-scan"
               >
                 <div className="p-2 bg-guardian-cyan/10 rounded-lg w-fit mb-4">
                   <project.icon className="text-guardian-cyan" size={24} />
                 </div>
-                <h3 className="font-display text-lg font-semibold text-white mb-2">{project.title}</h3>
+                <h3 className="font-display text-lg font-semibold text-white mb-2">
+                  <TitleLink project={project}>{project.title}</TitleLink>
+                </h3>
                 <p className="text-gray-400 text-sm mb-4 line-clamp-3">{project.description}</p>
                 <div className="flex flex-wrap gap-1">
                   {project.tags.slice(0, 3).map(tag => (
@@ -141,6 +164,7 @@ export default function Projects() {
                     ))}
                   </div>
                 )}
+                <ReadCue project={project} />
               </motion.article>
             ))}
           </div>

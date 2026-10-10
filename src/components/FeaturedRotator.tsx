@@ -2,10 +2,10 @@ import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import { ArrowRight, Workflow } from 'lucide-react'
-import { projects, ORGS } from '../data/projects'
+import { projects } from '../data/projects'
 
 // Three of the showcase projects, in random order. Chosen once per page load.
-const showcase = projects.filter(p => p.rotator && p.org)
+const showcase = projects.filter(p => p.rotator && p.employer)
 const picks = [...showcase].sort(() => Math.random() - 0.5).slice(0, 3)
 
 // Metrics that read weakly as a headline number
@@ -14,8 +14,7 @@ const HIDE_METRICS = ['Timeline']
 export default function FeaturedRotator() {
   const [active, setActive] = useState(0)
   const p = picks[active]
-  if (!p || !p.org) return null
-  const org = ORGS[p.org]
+  if (!p) return null
   const metrics = p.metrics.filter(m => !HIDE_METRICS.includes(m.label)).slice(0, 3)
 
   return (
@@ -59,9 +58,10 @@ export default function FeaturedRotator() {
           >
             <div className="lg:col-span-2">
               <div className="flex flex-wrap items-center gap-x-3 gap-y-1 mb-2 text-sm">
-                <span className="font-mono text-xs uppercase tracking-widest text-guardian-gold">{p.org}</span>
+                <span className="font-mono text-xs uppercase tracking-widest text-guardian-gold">{p.employerShort}</span>
                 <span className="text-gray-400">
-                  {org.name} | {org.period}
+                  {p.employer}
+                  {p.period ? ` | ${p.period}` : ''}
                 </span>
               </div>
               <h3 className="font-display text-2xl sm:text-3xl font-bold text-white mb-3">{p.title}</h3>
@@ -74,7 +74,7 @@ export default function FeaturedRotator() {
                   </li>
                 ))}
               </ul>
-              <Link to={`/projects#${p.id}`} className="btn-primary inline-flex items-center gap-2">
+              <Link to={p.hasArticle ? `/projects/${p.id}` : `/projects#${p.id}`} className="btn-primary inline-flex items-center gap-2">
                 Read full project
                 <ArrowRight size={16} />
               </Link>

@@ -22,6 +22,7 @@ const stats = [...fixedStats, ...picked].map(p => ({
   id: p.id,
   value: p.headline!.value,
   label: p.headline!.label,
+  to: p.hasArticle ? `/projects/${p.id}` : `/projects#${p.id}`,
 }))
 
 const skills = [
@@ -89,7 +90,7 @@ export default function Home() {
                       transition={{ delay: 0.5 + i * 0.1 }}
                     >
                       <Link
-                        to={`/projects#${stat.id}`}
+                        to={stat.to}
                         title="See the project behind this stat"
                         className="group relative block h-full p-3 pr-7 rounded-lg border border-guardian-trace/40 bg-guardian-navy/40 hover:border-guardian-cyan/60 hover:bg-guardian-navy/70 transition-all"
                       >
