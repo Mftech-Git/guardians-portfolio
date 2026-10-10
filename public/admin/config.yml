@@ -26,3 +26,43 @@ collections:
       - { label: Publish Date, name: date, widget: datetime }
       - { label: Feature Image, name: feature_image, widget: image, required: false }
       - { label: Body, name: body, widget: markdown }
+
+  - name: projects
+    label: Projects
+    label_singular: Project
+    folder: src/content/projects
+    create: true
+    slug: "{{slug}}"
+    summary: "{{order}}. {{title}}"
+    fields:
+      - { label: Title, name: title, widget: string }
+      - { label: Short title (home page tab), name: short_title, widget: string, required: false }
+      - { label: Summary (tile and top of page), name: summary, widget: text }
+      - { label: Overview (longer lead paragraph, featured cards only), name: overview, widget: text, required: false }
+      - { label: Employer, name: employer, widget: string, required: false }
+      - { label: Employer short name, name: employer_short, widget: string, required: false }
+      - { label: Period, name: period, widget: string, required: false, hint: "Example: Jul 2024 to Jan 2026" }
+      - { label: Icon, name: icon, widget: select, options: [monitor, code, database, network, shield, phone, server, cloud, mail], default: server }
+      - { label: Order (lower shows first), name: order, widget: number, value_type: int, default: 50 }
+      - { label: Featured (large card on Projects page), name: featured, widget: boolean, default: false }
+      - { label: Home page rotator, name: rotator, widget: boolean, default: false, hint: "Needs an employer. Three eligible projects are shown per page load." }
+      - { label: Home page headline stat, name: headline, widget: string, required: false, hint: "Format: value | label. Example: 1,200+ | Machines Deployed" }
+      - { label: Headline stat always shown, name: headline_fixed, widget: boolean, default: false }
+      - label: Tags
+        name: tags
+        widget: list
+        field: { label: Tag, name: tag, widget: string }
+      - label: Stats
+        name: stats
+        widget: list
+        hint: "Format: value | label. Example: 48 | Sites Managed"
+        field: { label: Stat, name: stat, widget: string }
+      - label: Highlights
+        name: highlights
+        widget: list
+        field: { label: Highlight, name: highlight, widget: string }
+      - label: Write-up
+        name: body
+        widget: markdown
+        required: false
+        default: "## Problem and goal\n\n## Stakeholders\n\n## Approach\n\n## Risks and rollback\n\n## Results\n\n## What I'd do differently\n"

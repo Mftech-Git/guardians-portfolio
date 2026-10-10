@@ -1,0 +1,25 @@
+// Lightweight markdown renderer — no external deps
+export function renderMarkdown(md: string): string {
+  return md
+    .replace(/^#{6}\s(.+)/gm, '<h6>$1</h6>')
+    .replace(/^#{5}\s(.+)/gm, '<h5>$1</h5>')
+    .replace(/^#{4}\s(.+)/gm, '<h4>$1</h4>')
+    .replace(/^#{3}\s(.+)/gm, '<h3>$1</h3>')
+    .replace(/^#{2}\s(.+)/gm, '<h2>$1</h2>')
+    .replace(/^#{1}\s(.+)/gm, '<h1>$1</h1>')
+    .replace(/```(\w*)\n([\s\S]*?)```/gm, '<pre><code class="language-$1">$2</code></pre>')
+    .replace(/`([^`]+)`/g, '<code>$1</code>')
+    .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+    .replace(/\*(.+?)\*/g, '<em>$1</em>')
+    .replace(/^>\s(.+)/gm, '<blockquote>$1</blockquote>')
+    .replace(/^\d+\.\s+(.+)/gm, '<oli>$1</oli>')
+    .replace(/(<oli>.*<\/oli>(\n|$))+/g, (m) => `<ol>${m}</ol>`)
+    .replace(/^\s*[-*]\s+(.+)/gm, '<li>$1</li>')
+    .replace(/(<li>.*<\/li>(\n|$))+/g, (m) => `<ul>${m}</ul>`)
+    .replace(/<(\/?)oli>/g, '<$1li>')
+    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>')
+    .replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '<img src="$2" alt="$1" />')
+    .replace(/^---$/gm, '<hr />')
+    .replace(/^(?!<\/?[a-z]).+/gm, (line) => line.trim() ? `<p>${line}</p>` : '')
+    .replace(/\n{2,}/g, '\n')
+}

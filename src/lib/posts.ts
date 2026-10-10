@@ -14,6 +14,8 @@ export interface Post {
   reading_time: number
 }
 
+import { parseFrontmatter } from './frontmatter'
+
 // Vite glob — imports all markdown files as raw strings at build time
 const modules = import.meta.glob('/src/content/posts/*.md', {
   query: '?raw',
@@ -24,49 +26,6 @@ const modules = import.meta.glob('/src/content/posts/*.md', {
 function estimateReadingTime(text: string): number {
   const words = text.trim().split(/\s+/).length
   return Math.max(1, Math.round(words / 200))
-}
-
-function parseFrontmatter(raw: string): { data: Record<string, unknown>; content: string } {
-  const match = raw.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n?([\s\S]*)$/)
-  if (!match) return { data: {}, content: raw }
-
-  const yamlBlock = match[1]
-  const content = match[2]
-
-  // Simple YAML key: value parser (handles strings, booleans, lists)
-  const data: Record<string, unknown> = {}
-  const lines = yamlBlock.split('\n')
-  let i = 0
-
-  while (i < lines.length) {
-    const line = lines[i]
-    const kvMatch = line.match(/^(\w+):\s*(.*)$/)
-    if (!kvMatch) { i++; continue }
-
-    const key = kvMatch[1]
-    const val = kvMatch[2].trim()
-
-    if (val === '') {
-      // Could be a list
-      const listItems: string[] = []
-      i++
-      while (i < lines.length && lines[i].match(/^\s*-\s+/)) {
-        listItems.push(lines[i].replace(/^\s*-\s+/, '').replace(/^['"]|['"]$/g, ''))
-        i++
-      }
-      data[key] = listItems
-      continue
-    } else if (val === 'true') {
-      data[key] = true
-    } else if (val === 'false') {
-      data[key] = false
-    } else {
-      data[key] = val.replace(/^['"]|['"]$/g, '')
-    }
-    i++
-  }
-
-  return { data, content }
 }
 
 function slugFromPath(path: string): string {

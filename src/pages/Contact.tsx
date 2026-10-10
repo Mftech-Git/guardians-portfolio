@@ -70,8 +70,8 @@ export default function Contact() {
             <span className="text-guardian-cyan">Touch</span>
           </h1>
           <p className="text-xl text-gray-400 leading-relaxed">
-            I'm currently open to new opportunities. Whether you have a question,
-            want to discuss a project, or just want to connect, I'd love to hear from you.
+            I work full time in IT and make time on the side for the right projects. Whether you
+            have a question, want to discuss a project, or just want to connect, I'd love to hear from you.
           </p>
         </motion.div>
 
@@ -210,9 +210,9 @@ export default function Contact() {
                   </a>
                 </li>
                 <li>
-                  <a href="https://linkedin.com/in/levi-oniszko" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-gray-400 hover:text-guardian-cyan transition-colors">
+                  <a href="https://www.linkedin.com/in/loniszko/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-gray-400 hover:text-guardian-cyan transition-colors">
                     <Linkedin size={18} />
-                    <span>linkedin.com/in/levi-oniszko</span>
+                    <span>linkedin.com/in/loniszko</span>
                   </a>
                 </li>
                 <li>
