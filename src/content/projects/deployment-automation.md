@@ -23,3 +23,7 @@ highlights:
   - BIOS asset tag scripting for inventory
   - SmartDeploy task automation integration
 ---
+
+## Write-up in progress
+
+The full article for this project, covering the problem, approach, risks, and results, is still being written. The summary above covers the highlights.

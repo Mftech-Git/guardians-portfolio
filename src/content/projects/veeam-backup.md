@@ -20,3 +20,7 @@ highlights:
   - Tested recovery procedures and documentation
   - Assisted with Pure Storage to TrueNAS migration
 ---
+
+## Write-up in progress
+
+The full article for this project, covering the problem, approach, risks, and results, is still being written. The summary above covers the highlights.

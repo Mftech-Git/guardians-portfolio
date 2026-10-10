@@ -22,3 +22,7 @@ highlights:
   - Serial number-based naming and tracking
   - Custom reporting for leadership
 ---
+
+## Write-up in progress
+
+The full article for this project, covering the problem, approach, risks, and results, is still being written. The summary above covers the highlights.

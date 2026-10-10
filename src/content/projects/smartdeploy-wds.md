@@ -25,3 +25,7 @@ highlights:
   - Custom answer files and post-imaging scripts
   - Documented and trained team on processes
 ---
+
+## Write-up in progress
+
+The full article for this project, covering the problem, approach, risks, and results, is still being written. The summary above covers the highlights.

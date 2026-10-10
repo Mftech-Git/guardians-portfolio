@@ -20,3 +20,7 @@ highlights:
   - User training and documentation
   - Experience across 3CX, GoTo, FreePBX, Allworx, Crexendo
 ---
+
+## Write-up in progress
+
+The full article for this project, covering the problem, approach, risks, and results, is still being written. The summary above covers the highlights.

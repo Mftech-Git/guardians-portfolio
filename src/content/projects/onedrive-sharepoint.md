@@ -24,3 +24,7 @@ highlights:
   - Produced end-user training videos (Clipchamp, Sway)
   - Data preservation and Known Folder Move via GPO
 ---
+
+## Write-up in progress
+
+The full article for this project, covering the problem, approach, risks, and results, is still being written. The summary above covers the highlights.
