@@ -45,7 +45,7 @@ export default function Footer() {
               ))}
               <li>
                 <a
-                  href="https://linkedin.com/in/levi-oniszko"
+                  href="https://www.linkedin.com/in/loniszko/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-2 text-gray-400 hover:text-guardian-cyan transition-colors text-sm"
@@ -97,7 +97,7 @@ export default function Footer() {
             &copy; {currentYear} Mainframe Tech LLC - Guardians AZ. All rights reserved.
           </p>
           <p className="text-gray-600 text-xs font-mono">
-            Built with React + Vite &bull; Self-hosted with pride
+            Built with React + Vite &bull; Hosted on Azure Static Web Apps
           </p>
         </div>
       </div>

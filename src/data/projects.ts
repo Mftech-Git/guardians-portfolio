@@ -11,6 +11,13 @@ import {
   type LucideIcon,
 } from 'lucide-react'
 
+export const ORGS = {
+  ACP: { name: 'Arizona Community Physicians', period: 'Jul 2024 to Jan 2026' },
+  OPCS: { name: 'Old Pueblo Community Services', period: 'Apr 2022 to Aug 2023' },
+} as const
+
+export type OrgKey = keyof typeof ORGS
+
 export interface ProjectHeadline {
   value: string
   label: string
@@ -28,6 +35,12 @@ export interface Project {
   metrics: { label: string; value: string }[]
   highlights: string[]
   featured: boolean
+  /** Short tab label for the home page project rotator */
+  shortTitle?: string
+  /** Employer where the work was done */
+  org?: OrgKey
+  /** Eligible for the home page project rotator (three of these are shown per load) */
+  rotator?: boolean
   /** Headline stat shown on the home page. Omit to keep the project out of the stats strip. */
   headline?: ProjectHeadline
 }
@@ -35,6 +48,9 @@ export interface Project {
 export const projects: Project[] = [
   {
     id: 'win11-migration',
+    shortTitle: 'Windows 11 Migration',
+    org: 'ACP',
+    rotator: true,
     title: 'Windows 11 Enterprise Migration',
     description: 'Led comprehensive Windows 11 migration across 48 medical sites, deploying 1,200+ machines with custom automation.',
     longDescription: `Managed the complete lifecycle of a Windows 11 migration at Arizona Community Physicians. Developed custom PowerShell scripts to automate deployment tasks, reducing per-machine setup from 2 hours to 15 minutes. Implemented SmartDeploy integration, created automated asset tracking with Snipe-IT, and designed a naming scheme using site prefix + serial number that simplified inventory across all sites.`,
@@ -58,6 +74,9 @@ export const projects: Project[] = [
   },
   {
     id: 'm365-licensing',
+    shortTitle: 'M365 License Audit',
+    org: 'ACP',
+    rotator: true,
     title: 'M365 Licensing Audit & Optimization',
     description: 'Identified approximately $100,000 in unnecessary Microsoft 365 licensing before renewal, preventing the expenditure entirely.',
     longDescription: `Conducted a comprehensive audit of the organization's Microsoft 365 licensing ahead of renewal at Arizona Community Physicians. Analyzed SKU assignments across 800+ users, identified redundant and over-provisioned licenses, and presented findings to leadership. The $100K savings was recognized with an out-of-cycle 8% merit raise and performance bonus within four months of hire.`,
@@ -79,6 +98,9 @@ export const projects: Project[] = [
   },
   {
     id: 'onedrive-sharepoint',
+    shortTitle: 'OneDrive Migration',
+    org: 'ACP',
+    rotator: true,
     title: 'OneDrive & SharePoint Cloud Migration',
     description: 'Led organization-wide migration from on-premises mapped drives to OneDrive and SharePoint Online.',
     icon: Cloud,
@@ -116,6 +138,9 @@ export const projects: Project[] = [
   },
   {
     id: 'smartdeploy-wds',
+    shortTitle: 'SmartDeploy + WDS',
+    org: 'OPCS',
+    rotator: true,
     title: 'SmartDeploy/WDS Automation (OPCS)',
     description: 'Built imaging and deployment infrastructure at Old Pueblo Community Services, cutting build times from 2 hours to under 20 minutes.',
     longDescription: `At OPCS, implemented SmartDeploy integrated with WDS and Hyper-V on Server 2022 to create a streamlined imaging pipeline. This was the foundation that proved the concept I later scaled at ACP.`,
