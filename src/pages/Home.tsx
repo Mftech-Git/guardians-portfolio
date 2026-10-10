@@ -5,6 +5,7 @@ import {
   Code,
   Shield,
   ArrowRight,
+  ArrowUpRight,
   Network,
   Workflow,
   Terminal as TerminalIcon,
@@ -80,20 +81,35 @@ export default function Home() {
               </div>
 
               {/* Stats */}
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 mt-12 pt-8 border-t border-guardian-trace/30">
-                {stats.map((stat, i) => (
-                  <motion.div
-                    key={stat.id}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.5 + i * 0.1 }}
-                  >
-                    <Link to={`/projects#${stat.id}`} className="group block" title="See the project">
-                      <div className="stat-value group-hover:text-guardian-gold transition-colors">{stat.value}</div>
-                      <div className="stat-label group-hover:text-gray-300 transition-colors">{stat.label}</div>
-                    </Link>
-                  </motion.div>
-                ))}
+              <div className="mt-12 pt-8 border-t border-guardian-trace/30">
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                  {stats.map((stat, i) => (
+                    <motion.div
+                      key={stat.id}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.5 + i * 0.1 }}
+                    >
+                      <Link
+                        to={`/projects#${stat.id}`}
+                        title="See the project behind this stat"
+                        className="group relative block h-full p-3 pr-7 rounded-lg border border-guardian-trace/40 bg-guardian-navy/40 hover:border-guardian-cyan/60 hover:bg-guardian-navy/70 transition-all"
+                      >
+                        <ArrowUpRight
+                          size={14}
+                          className="absolute top-2.5 right-2.5 text-guardian-cyan/40 group-hover:text-guardian-gold transition-colors"
+                        />
+                        <div className="stat-value sm:!text-2xl whitespace-nowrap group-hover:text-guardian-gold transition-colors">
+                          {stat.value}
+                        </div>
+                        <div className="stat-label min-h-[2.5rem] leading-5 group-hover:text-gray-300 transition-colors">
+                          {stat.label}
+                        </div>
+                      </Link>
+                    </motion.div>
+                  ))}
+                </div>
+                <p className="mt-3 text-xs font-mono text-gray-500">Select a stat to see the project behind it.</p>
               </div>
             </motion.div>
 
