@@ -1,17 +1,28 @@
-﻿name: Azure Static Web Apps CI/CD
+name: Azure Static Web Apps CI/CD
+
+# Changes from the old version:
+# - GitHub now builds the site (npm install, npm run build) instead of uploading a committed dist folder
+# - Pull requests get their own preview environment, which is closed when the PR is closed
+# - Production still deploys only on push to main
 
 on:
   push:
     branches:
       - main
+  pull_request:
+    types: [opened, synchronize, reopened, closed]
+    branches:
+      - main
 
 jobs:
   build_and_deploy_job:
+    if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
     runs-on: ubuntu-latest
     name: Build and Deploy Job
     permissions:
       id-token: write
       contents: read
+      pull-requests: write
     steps:
       - uses: actions/checkout@v3
       - name: Build And Deploy
@@ -20,6 +31,17 @@ jobs:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_BLUE_FIELD_0FC7ADE0F }}
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           action: "upload"
-          app_location: "dist"
-          skip_app_build: true
-          output_location: ""
+          app_location: "/"
+          api_location: ""
+          output_location: "dist"
+
+  close_pull_request_job:
+    if: github.event_name == 'pull_request' && github.event.action == 'closed'
+    runs-on: ubuntu-latest
+    name: Close Pull Request Job
+    steps:
+      - name: Close Pull Request
+        uses: Azure/static-web-apps-deploy@v1
+        with:
+          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_BLUE_FIELD_0FC7ADE0F }}
+          action: "close"
