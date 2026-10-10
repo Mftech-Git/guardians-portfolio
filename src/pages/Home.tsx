@@ -8,17 +8,22 @@ import {
   Network,
   Workflow,
   Terminal as TerminalIcon,
-  Cpu,
   Cloud,
 } from 'lucide-react'
 import Terminal from '../components/Terminal'
+import { projects } from '../data/projects'
 
-const stats = [
-  { value: '1,200+', label: 'Machines Deployed' },
-  { value: '48', label: 'Sites Managed' },
-  { value: '6+', label: 'Years Experience' },
-  { value: '$100K', label: 'Licensing Saved' },
-]
+// Two fixed headline stats plus two picked at random from the pool.
+// Chosen once per page load, and each links to its source project.
+const headlineProjects = projects.filter(p => p.headline)
+const fixedStats = headlineProjects.filter(p => p.headline?.fixed)
+const pool = headlineProjects.filter(p => !p.headline?.fixed)
+const picked = [...pool].sort(() => Math.random() - 0.5).slice(0, 2)
+const stats = [...fixedStats, ...picked].map(p => ({
+  id: p.id,
+  value: p.headline!.value,
+  label: p.headline!.label,
+}))
 
 const skills = [
   { icon: Cloud, label: 'Microsoft 365', desc: 'Exchange Online, Entra ID, SharePoint, Teams, Intune, Purview' },
@@ -38,7 +43,7 @@ export default function Home() {
         <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-guardian-gold/5 rounded-full blur-3xl animate-pulse animation-delay-500" />
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="grid xl:grid-cols-2 gap-12 items-center">
             {/* Left Content */}
             <motion.div
               initial={{ opacity: 0, x: -50 }}
@@ -78,43 +83,28 @@ export default function Home() {
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 mt-12 pt-8 border-t border-guardian-trace/30">
                 {stats.map((stat, i) => (
                   <motion.div
-                    key={stat.label}
+                    key={stat.id}
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.5 + i * 0.1 }}
                   >
-                    <div className="stat-value">{stat.value}</div>
-                    <div className="stat-label">{stat.label}</div>
+                    <Link to={`/projects#${stat.id}`} className="group block" title="See the project">
+                      <div className="stat-value group-hover:text-guardian-gold transition-colors">{stat.value}</div>
+                      <div className="stat-label group-hover:text-gray-300 transition-colors">{stat.label}</div>
+                    </Link>
                   </motion.div>
                 ))}
               </div>
             </motion.div>
 
-            {/* Right Content - Logo */}
+            {/* Right Content - Terminal */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="relative flex justify-center lg:justify-end"
+              className="flex justify-center xl:justify-end"
             >
-              <div className="relative">
-                <div className="absolute inset-0 bg-guardian-cyan/20 rounded-full blur-3xl scale-150" />
-                <img
-                  src="/logo.png"
-                  alt="Mainframe Tech Shield"
-                  className="relative w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96 object-contain animate-float"
-                />
-                <div className="absolute inset-0 animate-spin" style={{ animationDuration: '20s' }}>
-                  <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-4">
-                    <TerminalIcon className="text-guardian-cyan/60" size={24} />
-                  </div>
-                </div>
-                <div className="absolute inset-0 animate-spin" style={{ animationDuration: '25s', animationDirection: 'reverse' }}>
-                  <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-4">
-                    <Cpu className="text-guardian-gold/60" size={24} />
-                  </div>
-                </div>
-              </div>
+              <Terminal />
             </motion.div>
           </div>
         </div>
@@ -131,39 +121,6 @@ export default function Home() {
             <div className="w-px h-8 bg-gradient-to-b from-guardian-cyan to-transparent" />
           </div>
         </motion.div>
-      </section>
-
-      {/* Interactive Terminal Section */}
-      <section className="py-24 relative">
-        <div className="absolute inset-0 bg-gradient-to-b from-guardian-black via-guardian-navy/20 to-guardian-black" />
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-12"
-          >
-            <h2 className="font-display text-3xl sm:text-4xl font-bold mb-4">
-              <span className="text-white">Explore My</span>{' '}
-              <span className="text-guardian-cyan">Background</span>
-            </h2>
-            <p className="text-gray-400 max-w-2xl mx-auto">
-              Type <code className="text-guardian-cyan font-mono bg-guardian-navy/50 px-2 py-0.5 rounded">help</code> to
-              see available commands. Try <code className="text-guardian-cyan font-mono bg-guardian-navy/50 px-2 py-0.5 rounded">m365</code>,{' '}
-              <code className="text-guardian-cyan font-mono bg-guardian-navy/50 px-2 py-0.5 rounded">skills</code>, or{' '}
-              <code className="text-guardian-cyan font-mono bg-guardian-navy/50 px-2 py-0.5 rounded">experience</code>.
-            </p>
-          </motion.div>
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-            className="flex justify-center"
-          >
-            <Terminal />
-          </motion.div>
-        </div>
       </section>
 
       {/* Skills Section */}
