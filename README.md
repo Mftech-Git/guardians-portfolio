@@ -1,37 +1,44 @@
-# Guardians AZ — Portfolio v2
+# Guardians AZ Portfolio
 
 Personal portfolio website for Levi "Eli" Oniszko, IT Professional and Systems Administrator.
 
-**Brand:** Guardians AZ — "To Mend and Defend"
+**Brand:** Guardians AZ - "To Mend and Defend"
 
 ## Quick Start
 
 ```bash
 npm install
-npm run dev       # → http://localhost:3000
-npm run build     # → dist/
+npm run dev       # http://localhost:3000
+npm run build     # dist/
 npm run preview   # preview production build
 ```
 
 ## Stack
 
 - **Vite** + **React 18** + **TypeScript**
-- **Tailwind CSS** — custom Guardians AZ design tokens
-- **Framer Motion** — page transitions and scroll animations
-- **Lucide React** — icons
-- **React Router** — client-side routing (SPA)
-- **Ghost CMS** — headless blog backend (Docker) — see `GHOST-SETUP.md`
+- **Tailwind CSS** with custom Guardians AZ design tokens
+- **Framer Motion** for page transitions and scroll animations
+- **Lucide React** for icons
+- **React Router** for client-side routing (SPA)
+- **Markdown content** in `src/content/` (blog posts and project articles), editable through the CMS at `/admin`
 
 ## Pages
 
 | Route | Description |
 |-------|-------------|
-| `/` | Home — hero, interactive PowerShell terminal, skills, featured project |
-| `/about` | Story, timeline, philosophy, certifications sidebar |
-| `/projects` | Featured + other projects with metrics |
-| `/blog` | Blog — Ghost CMS powered with fallback placeholders |
-| `/resume` | Full resume with work history, skills, certs, education |
-| `/contact` | Contact form + direct contact info |
+| `/` | Home: hero, interactive terminal, core technologies, featured project rotator |
+| `/about` | Story, roles, homelab, Microsoft 365 depth, certifications sidebar |
+| `/projects` | Featured and other projects with metrics |
+| `/projects/:id` | Full project write-up (Problem and goal, Stakeholders, Approach, Risks and rollback, Results, What I'd do differently) |
+| `/blog` and `/blog/:slug` | Blog posts from `src/content/posts` |
+| `/resume` | Full resume with work history, skills, certs, education, and PDF download |
+| `/contact` | Contact form and direct contact info |
+
+## Content
+
+- **Project articles:** one markdown file per project in `src/content/projects/`. The front matter drives the cards, stats, and rotator. A project page goes live once its body has text under at least one heading.
+- **Blog posts:** markdown files in `src/content/posts/`.
+- **Resume PDF:** `public/Levi_Oniszko_Resume.pdf`.
 
 ## Brand Colors
 
@@ -44,34 +51,20 @@ npm run preview   # preview production build
 
 ## Interactive Terminal
 
-The homepage features an interactive PowerShell-style terminal where visitors can type commands to explore your background. Available commands: `help`, `skills`, `experience`, `projects`, `certs`, `contact`, `clear`.
+The homepage features an interactive PowerShell-style terminal where visitors can type commands to explore the background. Available commands: `help`, `skills`, `experience`, `projects`, `certs`, `contact`, `clear`.
 
 ## Deployment
 
-### Static hosting (Vercel, Netlify, etc.)
-```bash
-npm run build
-# Deploy the dist/ folder
-```
+The site runs on **Azure Static Web Apps**, deployed by GitHub Actions (`.github/workflows/azure-static-web-apps.yml`).
 
-### Self-hosted (nginx)
-```nginx
-server {
-    listen 443 ssl;
-    server_name yourdomain.com;
-    root /var/www/portfolio/dist;
-    index index.html;
-    location / {
-        try_files $uri $uri/ /index.html;
-    }
-}
-```
+- A pull request into `main` builds a preview environment.
+- Merging to `main` publishes the site.
+- A push to any other branch deploys nothing.
 
 ## TODO
 
 - [ ] Working contact form (backend handler)
-- [x] Blog CMS / editor — Ghost CMS integrated
+- [x] Blog and project CMS at `/admin`
+- [x] PDF resume download
 - [ ] Public Ollama chatbot (trained on resume)
-- [ ] PDF resume download
 - [ ] Pyramid certification display
-- [ ] Ghost SMTP for newsletter subscribers
