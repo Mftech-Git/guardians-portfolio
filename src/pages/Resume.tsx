@@ -13,13 +13,27 @@ import {
 
 const experience = [
   {
+    title: 'Remote Senior Escalation Engineer',
+    company: 'Sentry Computing',
+    context: 'Managed services provider | NOC and escalation team | Placed through CampusPoint Jun 2026 to Sep 2026, hired full-time Oct 2026',
+    location: 'Remote',
+    period: 'Jun 2026 to Present',
+    responsibilities: [
+      'Engineer on the NOC and escalation team, handling RMM, EDR, backup, and Microsoft 365 escalations',
+      'Hired full-time out of a contract-to-hire placement ahead of the original six-month term',
+      'Worked P1 incidents through a structured response process, from first response to post-incident review',
+      'Contributed to an internal firewall hardening project across WatchGuard, FortiGate, and UniFi, building the configuration inventory and running the cross-platform analysis',
+      'Documented an endpoint remediation procedure in the team knowledge base',
+    ],
+  },
+  {
     title: 'Systems Administrator',
     company: 'Arizona Community Physicians',
     context: "Arizona's largest physician-owned medical group | 50+ clinic locations, 800+ employees | HIPAA-regulated environment",
     location: 'Tucson, AZ',
-    period: 'Jul 2024 – Jan 2026',
+    period: 'Jul 2024 to Jan 2026',
     responsibilities: [
-      'Identified approximately $100,000 in unnecessary Microsoft 365 licensing before renewal, preventing the expenditure entirely; recognized with an out-of-cycle 8% merit raise and performance bonus within the first four months',
+      'Showed leadership that moving Microsoft 365 licensing from the reseller to direct billing would cost over $100,000 more every year, and documented 100+ unassigned E1 and E3 licenses for reduction at renewal; recognized with an out-of-cycle 8% merit raise and performance bonus within the first four months',
       'Led enterprise Windows 11 migration across 48 medical sites, deploying 1,200+ machines with zero disruption to clinical operations',
       'Built a PowerShell automation suite integrated with SmartDeploy and WDS that reduced per-machine deployment time from 2 hours to 15 minutes (87%)',
       'Led OneDrive migration for all staff from on-premises mapped drives as part of an organization-wide SharePoint and OneDrive modernization effort; assisted with SharePoint migration and produced end-user training videos using Clipchamp and Microsoft Sway',
@@ -36,7 +50,7 @@ const experience = [
     company: 'InTegriLogic',
     context: 'Healthcare-focused MSP | 80+ clients across medical, legal, financial, and nonprofit sectors',
     location: 'Tucson, AZ',
-    period: 'Oct 2023 – Jul 2024',
+    period: 'Oct 2023 to Jul 2024',
     responsibilities: [
       'Handled complex ticket escalations as part of the network infrastructure team across diverse multi-client environments',
       'Administered Sophos security stack for multiple clients; earned Sophos in-house certifications',
@@ -49,7 +63,7 @@ const experience = [
     company: 'Old Pueblo Community Services',
     context: 'Nonprofit human services organization | Built the organization\'s first internal IT department',
     location: 'Tucson, AZ',
-    period: 'Apr 2022 – Aug 2023',
+    period: 'Apr 2022 to Aug 2023',
     responsibilities: [
       'Promoted from Lead SysAdmin to IT Director within two weeks based on immediate technical impact and ownership',
       'Implemented SmartDeploy and WDS imaging infrastructure on Hyper-V and Windows Server 2022, cutting machine build times from 2+ hours to under 20 minutes',
@@ -60,7 +74,7 @@ const experience = [
     title: 'Systems Administrator Technician',
     company: 'La Frontera Arizona',
     location: 'Tucson, AZ',
-    period: 'Nov 2021 – Apr 2022',
+    period: 'Nov 2021 to Apr 2022',
     responsibilities: [
       'Active Directory administration, Group Policy management, and infrastructure support in a HIPAA-regulated behavioral health environment',
       'Served as escalation resource for end-user support and infrastructure incidents',
@@ -70,7 +84,7 @@ const experience = [
     title: 'IT Engineer',
     company: 'Technology Solutions',
     location: 'Tucson, AZ',
-    period: 'Feb 2020 – Jul 2021',
+    period: 'Feb 2020 to Jul 2021',
     responsibilities: [
       'Systems administration, networking, and end-user support across small and mid-sized business environments',
     ],
@@ -79,7 +93,7 @@ const experience = [
 
 const skills = {
   'Systems & Infrastructure': [
-    'Windows Server 2012R2–2022',
+    'Windows Server 2012R2 to 2022',
     'Active Directory / Group Policy',
     'NPS / RADIUS',
     'Hyper-V / VMware / Citrix VDI',
@@ -101,12 +115,13 @@ const skills = {
     'BIOS Asset Tagging',
   ],
   'Security & Email': [
+    'Incident Response',
     'Sophos Firewall & Email Security',
     'Wazuh / Bitdefender / Webroot',
     'Trend Micro / Proofpoint / Barracuda',
   ],
   'Networking': [
-    'UniFi / Sophos / FortiGate',
+    'UniFi / Sophos / FortiGate / WatchGuard',
     'Meraki / SonicWall',
     'VLAN / VPN / DHCP / DNS',
     '802.1X / NPS',

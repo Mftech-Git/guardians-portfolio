@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { Link } from 'react-router-dom'
 import {
   Award,
   MapPin,
@@ -20,14 +21,25 @@ import {
 // ─── Work history with expandable projects ─────────────────────────
 const workHistory = [
   {
+    title: 'Remote Senior Escalation Engineer',
+    company: '',
+    location: 'Remote',
+    context: 'Managed services provider - NOC and escalation team',
+    projects: [
+      { name: 'Escalation Engineering', detail: 'Engineer on a managed services provider\'s NOC and escalation team, handling RMM, EDR, backup, and Microsoft 365 escalations. Converted from contract to full-time ahead of the original six-month term.' },
+      { name: 'P1 Incident Response', detail: 'Worked P1 incidents through a structured response process, from first response to post-incident review.' },
+      { name: 'Firewall Hardening Project', detail: 'Contributed to an internal firewall hardening project across WatchGuard, FortiGate, and UniFi, building the configuration inventory and running the cross-platform analysis.' },
+      { name: 'Endpoint Remediation Documentation', detail: 'Documented an endpoint remediation procedure in the team knowledge base.' },
+    ],
+  },
+  {
     title: 'Systems Administrator',
     company: 'Arizona Community Physicians',
     location: 'Tucson, AZ',
-    period: 'Jul 2024 – Jan 2026',
     context: "Arizona's largest physician-owned medical group - 50+ clinics, 800+ employees, HIPAA-regulated",
     projects: [
       { name: 'Windows 11 Enterprise Migration', detail: 'Led deployment of 1,200+ machines across 48 medical sites with zero disruption to clinical operations. Built PowerShell automation suite integrated with SmartDeploy and WDS, cutting per-machine deployment from 2 hours to 15 minutes.' },
-      { name: 'M365 Licensing Audit', detail: 'Identified approximately $100,000 in unnecessary Microsoft 365 licensing before renewal. Prevented the expenditure entirely. Earned an out-of-cycle 8% merit raise and performance bonus within four months.' },
+      { name: 'M365 Licensing Audit', detail: 'Showed leadership that buying Microsoft 365 direct would cost over $100,000 more every year than staying with the reseller. Documented 100+ unassigned E1 and E3 licenses for reduction at renewal.' },
       { name: 'OneDrive & SharePoint Cloud Migration', detail: 'Led OneDrive migration for all staff from on-premises mapped drives. Assisted with organization-wide SharePoint migration. Produced end-user training videos in Clipchamp and Sway.' },
       { name: 'Sophos Email Security Administration', detail: 'Managed Sophos Email Security end-to-end: policy management, quarantine workflows, mail flow controls, escalation coordination with Exchange Online.' },
       { name: 'User Termination Workflow', detail: 'Designed standardized workflow enforcing immediate session revocation, license reclamation, and data preservation - replacing an inconsistent manual process.' },
@@ -39,7 +51,6 @@ const workHistory = [
     title: 'NIST Engineer (Network Infrastructure & Escalations)',
     company: 'InTegriLogic',
     location: 'Tucson, AZ',
-    period: 'Oct 2023 – Jul 2024',
     context: 'Healthcare-focused MSP - 80+ clients across medical, legal, financial, and nonprofit sectors',
     projects: [
       { name: 'Multi-Client Escalation Engineering', detail: 'Handled complex ticket escalations across diverse multi-client environments on the network infrastructure team.' },
@@ -51,7 +62,6 @@ const workHistory = [
     title: 'IT Director',
     company: 'Old Pueblo Community Services',
     location: 'Tucson, AZ',
-    period: 'Apr 2022 – Aug 2023',
     context: 'Nonprofit human services - built the organization\'s first internal IT department',
     projects: [
       { name: 'IT Department Creation', detail: 'Built the organization\'s first internal IT department from scratch. Promoted from Lead SysAdmin to IT Director within two weeks based on immediate technical impact.' },
@@ -63,7 +73,6 @@ const workHistory = [
     title: 'Systems Administrator Technician',
     company: 'La Frontera Arizona',
     location: 'Tucson, AZ',
-    period: 'Nov 2021 – Apr 2022',
     context: 'HIPAA-regulated behavioral health environment',
     projects: [
       { name: 'AD & Group Policy Administration', detail: 'Active Directory administration, Group Policy management, and infrastructure support. Served as escalation resource for end-user support and infrastructure incidents.' },
@@ -73,7 +82,6 @@ const workHistory = [
     title: 'IT Engineer',
     company: 'Technology Solutions',
     location: 'Tucson, AZ',
-    period: 'Feb 2020 – Jul 2021',
     context: 'Small and mid-sized business environments',
     projects: [
       { name: 'Systems Admin & Networking', detail: 'Systems administration, networking, and end-user support across diverse SMB clients.' },
@@ -145,7 +153,7 @@ const m365Skills = [
     icon: '💰',
     depth: 'Expert',
     details: [
-      'Identified ~$100K in unnecessary licensing',
+      'Showed buying direct would cost $100K+ more every year',
       'SKU analysis and right-sizing',
       'M365 admin center + PowerShell management',
       'M365 Lighthouse evaluation (multi-tenant)',
@@ -160,11 +168,11 @@ function WorkHistoryItem({ job }: { job: typeof workHistory[0] }) {
   return (
     <div className="relative pl-8 border-l-2 border-guardian-trace/50 hover:border-guardian-cyan/50 transition-colors">
       <div className="absolute left-0 top-0 w-4 h-4 -translate-x-[9px] bg-guardian-navy border-2 border-guardian-cyan rounded-full" />
-      <div className="flex flex-wrap items-center gap-2 mb-1">
-        <span className="font-mono text-sm text-guardian-cyan">{job.period}</span>
-        <span className="text-gray-600">&bull;</span>
-        <span className="text-gray-400 text-sm">{job.company}</span>
-      </div>
+      {job.company && (
+        <div className="mb-1">
+          <span className="font-mono text-sm text-guardian-cyan">{job.company}</span>
+        </div>
+      )}
       <h3 className="font-display text-lg font-semibold text-white mb-1">{job.title}</h3>
       <p className="text-xs text-gray-500 italic mb-3">{job.context}</p>
 
@@ -304,38 +312,33 @@ export default function About() {
               </h2>
               <div className="space-y-4">
                 <p className="text-gray-400 leading-relaxed">
-                  I'm the person who walks into an environment, figures out what's broken or missing, and gets it
-                  handled. I learn fast, I retain what I learn, and I prove it by shipping projects. Give me a
-                  challenge and I'll figure it out.
+                  I&apos;m the person who walks into an environment, sees a challenge and accepts it.
+                  &ldquo;Victory loves preparation&rdquo;, many projects shipped under my care prove this point. I learn
+                  fast, retain what I&apos;ve learned and use it to handle anything.
                 </p>
                 <p className="text-gray-400 leading-relaxed">
-                  Most recently at <span className="text-white">Arizona Community Physicians</span>, I served as
-                  the <span className="text-guardian-cyan">designated Microsoft 365 Subject Matter Expert</span> across
-                  50+ clinic locations and 800+ employees in a HIPAA-regulated healthcare environment.
-                  I owned the full M365 stack: Exchange Online, Entra ID/Azure AD, SharePoint, OneDrive, Teams,
-                  Intune, and Purview. I managed the entire user and license lifecycle, administered Sophos Email
-                  Security end-to-end with Exchange Online, and handled everything from AD Sync/Entra Connect Sync
-                  and MFA enforcement to PIM evaluation and conditional access. On-prem, cloud, and hybrid - I
-                  worked across all of it daily alongside Windows Server infrastructure, Active Directory, Group
-                  Policy, and PowerShell.
+                  The work is <span className="text-white">Microsoft 365, Windows infrastructure, and automation</span>,
+                  across healthcare, nonprofit, and MSP environments where systems have to stay up and data has to
+                  stay protected.
                 </p>
                 <p className="text-gray-400 leading-relaxed">
-                  I've worked at every scale. Small mom-and-pop shops at Technology Solutions. Nonprofits where I
-                  built the IT department from nothing at OPCS. An MSP supporting 80+ clients across healthcare,
-                  legal, financial, and nonprofit sectors at InTegriLogic. And enterprise healthcare with 1,000+
-                  endpoints across 48 medical sites at ACP. I'm equally effective solo or on a team, and I've been
-                  the senior escalation resource at every organization I've been part of.
+                  Hard problems are where I volunteer first, even the ones nobody asked me to take on, like
+                  a <Link to="/projects/m365-licensing" className="text-guardian-cyan hover:underline">licensing analysis that saved over $100K a year</Link>.
+                  Delivering on them earned the trust of leadership, who kept bringing me into bigger projects and
+                  let me lead several, including a <Link to="/projects/win11-migration" className="text-guardian-cyan hover:underline">1,200+ machine Windows 11 migration</Link> across
+                  48 sites.
                 </p>
                 <p className="text-gray-400 leading-relaxed">
-                  I made IT Director at 28 with no degree. Not because I checked boxes, but because I showed up,
-                  built what was needed, and delivered results fast enough that they promoted me within two weeks.
-                  What sets me apart is that I <span className="text-white">learn whatever needs to be learned</span> and
-                  I <span className="text-white">get things done</span>. My homelab, my certifications, and my project
-                  history all point to the same thing: I don't stop at "I don't know how." I go figure it out.
+                  Formal education and hands-on work built the foundation. I also mentor and train IT staff, and
+                  I&apos;m glad to help a team get up to speed.
+                </p>
+                <p className="text-gray-400 leading-relaxed">
+                  Above all, it comes down to <span className="text-white">critical thinking</span>: attacking every
+                  problem with relentless focus and landing on the best solution in an efficient time frame.
                 </p>
                 <p className="text-gray-400 leading-relaxed text-sm italic">
-                  The projects shown here are just a sample. I have many more from across my career that I'll be
-                  adding over time.
+                  Detailed write-ups of selected projects are on the <Link to="/projects" className="text-guardian-cyan hover:underline">Projects</Link> page,
+                  with more added over time.
                 </p>
               </div>
             </motion.section>
@@ -343,14 +346,14 @@ export default function About() {
             {/* Where I've Been - expandable projects */}
             <motion.section initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.15 }}>
               <h2 className="font-display text-2xl font-bold text-white mb-2 heading-accent">
-                Where I've Been
+                Roles I&apos;ve Held
               </h2>
               <p className="text-gray-500 text-sm mb-6">
-                Click any role to expand and see the projects I delivered.
+                Click any role to expand and see what I delivered.
               </p>
               <div className="space-y-8">
-                {workHistory.map((job) => (
-                  <WorkHistoryItem key={`${job.company}-${job.period}`} job={job} />
+                {workHistory.map((job, i) => (
+                  <WorkHistoryItem key={`${job.title}-${job.company}-${i}`} job={job} />
                 ))}
               </div>
             </motion.section>
@@ -363,18 +366,18 @@ export default function About() {
               </h2>
               <div className="p-6 bg-guardian-navy/50 border border-guardian-trace/50 rounded-xl mb-6">
                 <p className="text-gray-400 leading-relaxed mb-4">
-                  I don't just work with this stuff 9–5 - I build with it at home. My homelab is where I test
+                  I don't just work with this stuff 9 to 5 - I build with it at home. My homelab is where I test
                   ideas, break things safely, and teach myself whatever I need to know next. If I'm not sure I
                   can do something, I spin it up at home first and figure it out before it ever touches production.
                 </p>
                 <div className="grid sm:grid-cols-2 gap-3">
                   {[
-                    { label: 'UniFi Infrastructure', desc: 'UXG gateway, managed switches, dual-WAN DMZ for self-hosting' },
-                    { label: 'Self-Hosted Portfolio', desc: 'This site - React, Vite, Ghost CMS, all running in my DMZ' },
-                    { label: 'Docker & Containerization', desc: 'Ghost, Open WebUI, Ollama, and other services in Docker Compose' },
+                    { label: 'UniFi Infrastructure', desc: 'UXG gateway and managed switches' },
+                    { label: 'Cloud-Hosted Portfolio', desc: 'This site: React and Vite on Azure Static Web Apps, deployed with GitHub Actions' },
+                    { label: 'Docker & Containerization', desc: 'Open WebUI, Ollama, and other services in Docker Compose' },
                     { label: 'Local AI Stack', desc: 'Ollama + Open WebUI - private LLM with voice cloning (AllTalk TTS) and Whisper STT' },
                     { label: 'Windows Server / AD', desc: 'Lab domain controllers, GPO testing, deployment automation staging' },
-                    { label: 'Network Segmentation', desc: 'VLANs, firewall rules, proper DMZ isolation from home network' },
+                    { label: 'Network Segmentation', desc: 'VLANs and firewall rules to segment the home network' },
                     { label: 'Backup & Recovery', desc: 'Veeam, Synology NAS, offsite replication testing' },
                     { label: 'Home Automation', desc: 'Home Assistant integration with security, sensors, and voice control' },
                   ].map((item) => (
@@ -413,9 +416,7 @@ export default function About() {
                     <h3 className="font-display text-white font-semibold">Critical Thinking</h3>
                   </div>
                   <p className="text-gray-400 text-sm leading-relaxed">
-                    I don't just fix what's in front of me - I figure out why it broke and how to prevent it next time.
-                    I caught $100K in licensing waste that an entire team missed. I designed termination workflows
-                    that plugged security gaps nobody documented. I see systems, not just symptoms.
+                    I look for why something broke and how to keep it from breaking again. That habit produced a termination workflow that closed security gaps nobody had documented and deployment automation that cut per-machine deployment from 2 hours to 15 minutes. I see systems, not just symptoms.
                   </p>
                 </div>
 
@@ -427,9 +428,7 @@ export default function About() {
                     <h3 className="font-display text-white font-semibold">Customer Service</h3>
                   </div>
                   <p className="text-gray-400 text-sm leading-relaxed">
-                    Six years of direct end-user support across healthcare, legal, and nonprofit environments.
-                    I've been the person on the phone when a clinic can't access patient records. Senior escalation
-                    resource at every organization I've worked for - the one they call when nobody else can solve it.
+                    Six years of direct end-user support across healthcare, legal, and nonprofit environments, including being the person on the phone when a clinic can't access patient records. The senior escalation resource at every organization along the way.
                   </p>
                 </div>
 
@@ -441,9 +440,7 @@ export default function About() {
                     <h3 className="font-display text-white font-semibold">Communication</h3>
                   </div>
                   <p className="text-gray-400 text-sm leading-relaxed">
-                    I built training videos to guide 800+ employees through OneDrive migration. Coordinated site
-                    operations across 48 locations. Managed vendor relationships and presented technical
-                    recommendations to leadership. I translate IT for everyone else.
+                    Training videos that guided 800+ employees through a OneDrive migration. Site coordination across 48 locations. Vendor relationships and technical recommendations presented to leadership. I translate IT for everyone else.
                   </p>
                 </div>
 
@@ -455,9 +452,7 @@ export default function About() {
                     <h3 className="font-display text-white font-semibold">Ownership</h3>
                   </div>
                   <p className="text-gray-400 text-sm leading-relaxed">
-                    I don't wait to be told what needs doing. I built an entire IT department because I saw the need.
-                    I caught the licensing waste because I actually read the renewal. I take ownership of the
-                    environment, not just the ticket in front of me.
+                    I don't wait to be told what needs doing. When an organization had no IT department, I built one. I take ownership of the environment, not just the ticket in front of me.
                   </p>
                 </div>
               </div>
