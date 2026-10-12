@@ -23,7 +23,7 @@ export default {
       },
       fontFamily: {
         display: ['Orbitron', 'sans-serif'],
-        body: ['Rajdhani', 'sans-serif'],
+        body: ['"DejaVu Sans"', 'Verdana', 'sans-serif'],
         mono: ['JetBrains Mono', 'monospace'],
       },
       animation: {

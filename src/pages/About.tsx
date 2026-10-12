@@ -303,7 +303,7 @@ export default function About() {
 
         <div className="grid lg:grid-cols-3 gap-12">
           {/* Main Content */}
-          <div className="lg:col-span-2 space-y-12">
+          <div className="lg:col-span-2 space-y-12 min-w-0">
 
             {/* Who I Am */}
             <motion.section initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}>
@@ -464,13 +464,13 @@ export default function About() {
                 <Quote className="text-guardian-gold" size={24} />
                 What Others Say
               </h2>
-              <div className="p-6 bg-gradient-to-br from-guardian-navy/50 to-guardian-cyan/5 border border-guardian-cyan/30 rounded-xl">
-                <div className="flex items-start gap-4">
+              <div className="p-4 sm:p-6 bg-gradient-to-br from-guardian-navy/50 to-guardian-cyan/5 border border-guardian-cyan/30 rounded-xl">
+                <div className="flex flex-col sm:flex-row items-start gap-4">
                   <div className="w-12 h-12 bg-[#0A66C2]/20 rounded-lg flex items-center justify-center flex-shrink-0">
                     <Linkedin className="text-[#0A66C2]" size={24} />
                   </div>
-                  <div>
-                    <h3 className="font-display text-lg text-white font-semibold mb-2">
+                  <div className="min-w-0">
+                    <h3 className="font-display text-base sm:text-lg text-white font-semibold mb-2">
                       LinkedIn Recommendations
                     </h3>
                     <p className="text-gray-400 text-sm mb-4">
@@ -481,7 +481,7 @@ export default function About() {
                       href="https://www.linkedin.com/in/loniszko/details/recommendations/"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="btn-primary inline-flex items-center gap-2 text-sm"
+                      className="btn-primary inline-flex items-center gap-2 text-xs sm:text-sm px-4 sm:px-6"
                     >
                       <Linkedin size={16} />
                       View Recommendations
